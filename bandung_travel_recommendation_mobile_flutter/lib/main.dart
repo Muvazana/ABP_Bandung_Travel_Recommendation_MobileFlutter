@@ -1,3 +1,6 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/sidebar.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/signin_or_signup_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,11 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Bandung Travel Recommendation',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        brightness: Brightness.dark
       ),
-      home: Container(),
+      initialRoute: SignInOrSignUpScreen.routeName,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
