@@ -4,9 +4,10 @@ class TextButtonCustomV1 extends StatelessWidget {
   final String text;
   final double? width;
   final EdgeInsetsGeometry? margin;
-  final Color? backgroundColor, textColor;
+  final Color? backgroundColor, textColor, borderColor;
   final double? textSize;
   final VoidCallback? onPressed;
+  final bool isOutlineType;
   const TextButtonCustomV1({
     Key? key,
     required this.text,
@@ -16,6 +17,8 @@ class TextButtonCustomV1 extends StatelessWidget {
     this.textColor = Colors.white,
     this.textSize = 16,
     this.onPressed,
+    this.isOutlineType = false,
+    this.borderColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -27,10 +30,14 @@ class TextButtonCustomV1 extends StatelessWidget {
         onPressed: this.onPressed,
         style: OutlinedButton.styleFrom(
           backgroundColor: this.backgroundColor,
-          padding:
-              EdgeInsets.symmetric(vertical: 12),
+          padding: EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
+            side: this.isOutlineType ? BorderSide(
+              color: this.borderColor!,
+              width: 1,
+              style: BorderStyle.solid,
+            ) : BorderSide.none,
           ),
         ),
         child: Row(

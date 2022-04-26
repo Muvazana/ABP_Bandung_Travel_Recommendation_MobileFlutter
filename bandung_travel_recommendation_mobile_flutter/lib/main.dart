@@ -1,3 +1,4 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_or_signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/routes.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.dark
       ),
-      initialRoute: SignUpScreen.routeName,
+      initialRoute: SignInOrSignUpScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

@@ -1,3 +1,5 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,7 +31,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
             ),
             Container(
               width: size.width,
-              height: size.height * 1 / 4,
+              height: size.height * 1 / 3.5,
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               child: Column(children: <Widget>[
                 SvgPicture.asset(
@@ -47,18 +49,38 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 Spacer(flex: 2),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    BtnSignInOrSignUp(
+                    TextButtonCustomV1(
                       text: "Sign In",
+                      backgroundColor: MyColors.whiteColor,
+                      textColor: MyColors.semiDarkColor,
                       onPressed: () {},
                     ),
-                    SizedBox(width: 15),
-                    BtnSignInOrSignUp(
+                    SizedBox(height: 3),
+                    Row(children: <Widget>[
+                      Expanded(child: Divider(color: MyColors.whiteColor, thickness: 1, endIndent: 6)),
+                      Text("OR"),
+                      Expanded(child: Divider(color: MyColors.whiteColor, thickness: 1, indent: 6)),
+                    ]),
+                    SizedBox(height: 3),
+                    TextButtonCustomV1(
                       text: "Sign Up",
+                      backgroundColor: Colors.transparent,
+                      textColor: MyColors.whiteColor,
+                      isOutlineType: true,
                       onPressed: () {},
                     ),
+                    // BtnSignInOrSignUp(
+                    //   text: "Sign In",
+                    //   onPressed: () {},
+                    // ),
+                    // SizedBox(width: 15),
+                    // BtnSignInOrSignUp(
+                    //   text: "Sign Up",
+                    //   onPressed: () {},
+                    // ),
                   ],
                 ),
                 Spacer(flex: 2),
@@ -71,31 +93,31 @@ class SignInOrSignUpScreen extends StatelessWidget {
   }
 }
 
-class BtnSignInOrSignUp extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final String text;
+// class BtnSignInOrSignUp extends StatelessWidget {
+//   final VoidCallback? onPressed;
+//   final String text;
 
-  const BtnSignInOrSignUp({
-    Key? key,
-    this.onPressed,
-    required this.text,
-  }) : super(key: key);
+//   const BtnSignInOrSignUp({
+//     Key? key,
+//     this.onPressed,
+//     required this.text,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: this.onPressed,
-      style: OutlinedButton.styleFrom(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 32),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        side: BorderSide(width: 1.0, color: Colors.white),
-      ),
-      child: Text(
-        this.text,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return OutlinedButton(
+//       onPressed: this.onPressed,
+//       style: OutlinedButton.styleFrom(
+//         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 32),
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(30.0),
+//         ),
+//         side: BorderSide(width: 1.0, color: Colors.white),
+//       ),
+//       child: Text(
+//         this.text,
+//         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//       ),
+//     );
+//   }
+// }
