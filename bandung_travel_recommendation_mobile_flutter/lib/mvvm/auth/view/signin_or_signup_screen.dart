@@ -41,7 +41,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                 ),
                 Spacer(flex: 1),
                 Text(
-                  "We discover The Best Tour, Best Place in \nBandung City",
+                  "We discover The Best Tour and Best Place in \nBandung City",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
