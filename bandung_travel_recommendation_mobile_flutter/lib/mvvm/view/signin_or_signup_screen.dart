@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInOrSignUpScreen extends StatelessWidget {
-  static const routeName = '/';
+  static const routeName = '/Auth';
   const SignInOrSignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -20,11 +20,12 @@ class SignInOrSignUpScreen extends StatelessWidget {
         ),
         Positioned(
           bottom: 0,
+          width: size.width,
           child: Column(children: [
             SvgPicture.asset(
               'assets/images/person.svg',
               alignment: Alignment.center,
-              height: size.height * 1 / 3,
+              height: size.height * 1 / 3.5,
             ),
             Container(
               width: size.width,
@@ -36,7 +37,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   width: size.width,
                 ),
-                SizedBox(height: 14),
+                Spacer(flex: 1),
                 Text(
                   "We discover The Best Tour, Best Place in \nBandung City",
                   textAlign: TextAlign.center,
@@ -45,7 +46,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.normal),
                 ),
-                SizedBox(height: 28),
+                Spacer(flex: 2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -59,7 +60,8 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ],
-                )
+                ),
+                Spacer(flex: 2),
               ]),
             ),
           ]),

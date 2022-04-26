@@ -1,5 +1,6 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/sidebar.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/signin_or_signup_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/signin_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -16,10 +17,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) {
           return SignInOrSignUpScreen();
         });
-      case Sidebar.routeName:
+      case SignInScreen.routeName:
         return MaterialPageRoute(builder: (context) {
-          return Sidebar();
+          return SignInScreen();
         });
+      // case Sidebar.routeName:
+      //   return MaterialPageRoute(builder: (context) {
+      //     return Sidebar();
+      //   });
       default:
         return _errorRoute();
     }
