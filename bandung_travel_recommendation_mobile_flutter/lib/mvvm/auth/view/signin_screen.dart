@@ -21,7 +21,7 @@ class _SignInScreenState extends State<SignInScreen> {
     // final size = MediaQuery.of(context).size;
     return SignInOrSignUpLayout(
       formKey: this._formKey,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       contents: <Widget>[
         Text(
           "Welcome Back",
