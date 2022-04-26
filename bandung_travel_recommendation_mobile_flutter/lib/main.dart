@@ -1,6 +1,4 @@
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/sidebar.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/signin_or_signup_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/view/signin_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/routes.dart';
 import 'package:flutter/material.dart';
 

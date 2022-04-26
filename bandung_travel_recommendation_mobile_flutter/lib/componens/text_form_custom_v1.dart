@@ -68,7 +68,7 @@ class _TextFormCustomV1State extends State<TextFormCustomV1> {
                 child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Icon(
-                      Icons.remove_red_eye_sharp,
+                      _isPasswordShowed ? Icons.visibility : Icons.visibility_off,
                       color: MyColors.whiteColor,
                       size: 24,
                     ),
