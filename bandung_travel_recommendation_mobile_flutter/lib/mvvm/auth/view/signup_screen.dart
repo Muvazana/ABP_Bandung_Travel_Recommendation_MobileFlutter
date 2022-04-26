@@ -5,15 +5,15 @@ import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class SignInScreen extends StatefulWidget {
-  static const routeName = '/Auth/SignInScreen';
-  const SignInScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  static const routeName = '/Auth/SignUpScreen';
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   @override
@@ -24,7 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
       autovalidateMode: AutovalidateMode.always,
       contents: <Widget>[
         Text(
-          "Welcome Back",
+          "Create account",
           style: TextStyle(
             color: MyColors.darkColor,
             fontWeight: FontWeight.bold,
@@ -41,6 +41,16 @@ class _SignInScreenState extends State<SignInScreen> {
         //   ),
         // ),
         // SizedBox(height: 6),
+        TextFormCustomV1(
+          hintText: "Enter your name",
+          icon: Icon(
+            Icons.person,
+            color: MyColors.whiteColor,
+            size: 24,
+          ),
+          validator: RequiredValidator(errorText: "* Required!"),
+        ),
+        SizedBox(height: 6),
         TextFormCustomV1(
           hintText: "Enter your email",
           icon: Icon(
@@ -67,7 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         SizedBox(height: 8),
         TextButtonCustomV1(
-          text: "Sign In",
+          text: "Sign Up",
           backgroundColor: MyColors.primaryColor,
           textColor: MyColors.whiteColor,
           onPressed: () {
@@ -81,7 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
         SizedBox(height: 6),
         Row(children: [
           Text(
-            "Don't have an account? ",
+            "Already have an account? ",
             style: TextStyle(
               color: MyColors.semiDarkColor,
               fontSize: 12,
@@ -89,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           InkWell(
             child: Text(
-              "Sign Up",
+              "Sign In",
               style: TextStyle(
                   color: MyColors.darkColor,
                   fontSize: 12,
