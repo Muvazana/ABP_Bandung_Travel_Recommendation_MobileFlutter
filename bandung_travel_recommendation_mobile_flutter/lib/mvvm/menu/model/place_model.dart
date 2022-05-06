@@ -4,42 +4,44 @@
 
 import 'dart:convert';
 
-List<Place> placeFromMap(String str) => List<Place>.from(json.decode(str).map((x) => Place.fromMap(x)));
+List<Place> placeFromMap(String str) =>
+    List<Place>.from(json.decode(str).map((x) => Place.fromMap(x)));
 
-String placeToMap(List<Place> data) => json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
+String placeToMap(List<Place> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class Place {
-    Place({
-        required this.id,
-        required this.name,
-        required this.typePlaceId,
-        required this.rate,
-        required this.description,
-        required this.imageName,
-        required this.alamat,
-        required this.latitude,
-        required this.longitude,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.view,
-        required this.placeType,
-    });
+  Place({
+    required this.id,
+    required this.name,
+    required this.typePlaceId,
+    required this.rate,
+    required this.description,
+    required this.imageName,
+    required this.alamat,
+    required this.latitude,
+    required this.longitude,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.view,
+    required this.placeType,
+  });
 
-    int id;
-    String name;
-    int typePlaceId;
-    double rate;
-    String description;
-    String imageName;
-    String alamat;
-    String latitude;
-    String longitude;
-    DateTime createdAt;
-    DateTime updatedAt;
-    int view;
-    PlaceType placeType;
+  int id;
+  String name;
+  int typePlaceId;
+  double rate;
+  String description;
+  String imageName;
+  String alamat;
+  String latitude;
+  String longitude;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int view;
+  PlaceType placeType;
 
-    factory Place.fromMap(Map<String, dynamic> json) => Place(
+  factory Place.fromMap(Map<String, dynamic> json) => Place(
         id: json["id"],
         name: json["name"],
         typePlaceId: json["type_place_id"],
@@ -53,9 +55,9 @@ class Place {
         updatedAt: DateTime.parse(json["updated_at"]),
         view: json["view"],
         placeType: PlaceType.fromMap(json["place_type"]),
-    );
+      );
 
-    Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
         "type_place_id": typePlaceId,
@@ -69,33 +71,41 @@ class Place {
         "updated_at": updatedAt.toIso8601String(),
         "view": view,
         "place_type": placeType.toMap(),
-    };
+      };
+
 }
 
 class PlaceType {
-    PlaceType({
-        required this.id,
-        required this.name,
-        required this.createdAt,
-        required this.updatedAt,
-    });
+  PlaceType({
+    required this.id,
+    required this.name,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-    int id;
-    String name;
-    DateTime createdAt;
-    DateTime updatedAt;
+  int id;
+  String name;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-    factory PlaceType.fromMap(Map<String, dynamic> json) => PlaceType(
+  factory PlaceType.fromMap(Map<String, dynamic> json) => PlaceType(
         id: json["id"],
         name: json["name"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-    );
+      );
 
-    Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-    };
+      };
+
+  factory PlaceType.dataDummy() => PlaceType(
+        id: 0,
+        name: "Place Type Dummy",
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
 }
