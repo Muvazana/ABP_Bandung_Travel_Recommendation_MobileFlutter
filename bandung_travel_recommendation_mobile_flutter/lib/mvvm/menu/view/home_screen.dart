@@ -112,22 +112,97 @@ class _HomeScreenState extends State<HomeScreen> {
           delegate: SliverChildListDelegate([
             _buildDiscoverPage(size),
             _buildRecomPage(size),
-            Container(
-              color: MyColors.whiteColor,
-              padding: const EdgeInsets.symmetric(vertical: 32),
-              child: Column(
-                children: <Widget>[
-                  _addTitleV1("Meet Our Teams", MyColors.semiDarkColor),
-                  SizedBox(height: 24),
-                  Container(
-                    width: size.width,
-                    height: 100,
-                    color: Colors.red,
-                  ),
-                ],
-              ),
-            ),
+            _buildTeamsPage(size),
           ]),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTeamsPage(Size size) {
+    var height = size.height + size.height * 1 / 4;
+    return Container(
+      color: MyColors.whiteColor,
+      height: height,
+      padding: const EdgeInsets.symmetric(vertical: 32),
+      child: Column(
+        children: <Widget>[
+          _addTitleV1("Meet Our Teams", MyColors.semiDarkColor),
+          SizedBox(height: 24),
+          _teamsCardItem(size),
+        ],
+      ),
+    );
+  }
+
+  Widget _teamsCardItem(Size size) {
+    var width = size.width / 2;
+    var height = width - width / 4;
+
+    mText(text, {isSubText = false}) => Text(
+          text,
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: MyColors.semiDarkColor,
+            fontSize: (height / 2) / (isSubText ? 6 : 5),
+            fontWeight: isSubText ? FontWeight.normal : FontWeight.bold,
+            overflow: TextOverflow.clip,
+          ),
+        );
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          width: width,
+          height: height,
+          clipBehavior: Clip.hardEdge,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: MyColors.whiteColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                offset: Offset(15, 15),
+                blurRadius: 35,
+                spreadRadius: -10,
+              ),
+            ],
+          ),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              CircleAvatar(
+                backgroundColor: Colors.red,
+                radius: (height / 2) * 1.8 / 3,
+              ),
+              Spacer(flex: 4),
+              mText("Person Name"),
+              Spacer(flex: 1),
+              mText("000000000", isSubText: true),
+            ],
+          ),
+        ),
+        Container(
+          width: width / 4,
+          height: height * 2 / 3,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            color: MyColors.primaryColor,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              bottomRight: Radius.circular(10),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                offset: Offset(15, 0),
+                blurRadius: 35,
+                spreadRadius: -10,
+              ),
+            ],
+          ),
         ),
       ],
     );
