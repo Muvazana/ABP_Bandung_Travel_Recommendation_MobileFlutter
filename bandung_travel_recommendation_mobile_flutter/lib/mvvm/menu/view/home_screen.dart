@@ -1,13 +1,17 @@
 import 'dart:ffi';
 
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/team_profile_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  String title;
+
+  HomeScreen({Key? key, required this.title}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -44,37 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 
-  final _teamsData = [
-    {
-      "name": "Moch. Nauval Rizaldi N",
-      "nim": "1301194482",
-      "imageName": "",
-      "linkedInUrl": "",
-      "githubUrl": ""
-    },
-    {
-      "name": "Arga Melvern",
-      "nim": "1301194055",
-      "imageName": "",
-      "linkedInUrl": "",
-      "githubUrl": ""
-    },
-    {
-      "name": "Mohammad Akbar Fauzy",
-      "nim": "1301194133",
-      "imageName": "",
-      "linkedInUrl": "",
-      "githubUrl": ""
-    },
-    {
-      "name": "Jane Raihan",
-      "nim": "1301194240",
-      "imageName": "",
-      "linkedInUrl": "",
-      "githubUrl": ""
-    },
-  ];
-
   _addTitleV1(String title, Color color) => Text(
         title,
         style: TextStyle(
@@ -90,23 +63,37 @@ class _HomeScreenState extends State<HomeScreen> {
         image: AssetImage(src),
         fit: BoxFit.cover,
       );
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          pinned: _pinned,
-          snap: _snap,
-          floating: _floating,
-          expandedHeight: size.height - AppBar().preferredSize.height,
-          backgroundColor: MyColors.primaryColor.withOpacity(0.6),
-          flexibleSpace: FlexibleSpaceBar(
-            background: Stack(
-              alignment: Alignment.topCenter,
-              children: _buildHeader(size),
-            ),
-          ),
+        SliverLayoutBuilder(
+          builder: (context, constraints) {
+            var isSliverCollapse = (constraints.scrollOffset >
+                (size.height - (AppBar().preferredSize.height * 2)));
+            return SliverAppBar(
+              pinned: _pinned,
+              snap: _snap,
+              floating: _floating,
+              expandedHeight: size.height - AppBar().preferredSize.height,
+              backgroundColor: MyColors.primaryColor,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: isSliverCollapse
+                    ? Text(
+                        this.widget.title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    : null,
+                background: Stack(
+                  alignment: Alignment.topCenter,
+                  children: _buildHeader(size),
+                ),
+              ),
+            );
+          },
         ),
         SliverList(
           delegate: SliverChildListDelegate([
@@ -114,95 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildRecomPage(size),
             _buildTeamsPage(size),
           ]),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTeamsPage(Size size) {
-    var height = size.height + size.height * 1 / 4;
-    return Container(
-      color: MyColors.whiteColor,
-      height: height,
-      padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Column(
-        children: <Widget>[
-          _addTitleV1("Meet Our Teams", MyColors.semiDarkColor),
-          SizedBox(height: 24),
-          _teamsCardItem(size),
-        ],
-      ),
-    );
-  }
-
-  Widget _teamsCardItem(Size size) {
-    var width = size.width / 2;
-    var height = width - width / 4;
-
-    mText(text, {isSubText = false}) => Text(
-          text,
-          maxLines: 1,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: MyColors.semiDarkColor,
-            fontSize: (height / 2) / (isSubText ? 6 : 5),
-            fontWeight: isSubText ? FontWeight.normal : FontWeight.bold,
-            overflow: TextOverflow.clip,
-          ),
-        );
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Container(
-          width: width,
-          height: height,
-          clipBehavior: Clip.hardEdge,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: MyColors.whiteColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                offset: Offset(15, 15),
-                blurRadius: 35,
-                spreadRadius: -10,
-              ),
-            ],
-          ),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: (height / 2) * 1.8 / 3,
-              ),
-              Spacer(flex: 4),
-              mText("Person Name"),
-              Spacer(flex: 1),
-              mText("000000000", isSubText: true),
-            ],
-          ),
-        ),
-        Container(
-          width: width / 4,
-          height: height * 2 / 3,
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            color: MyColors.primaryColor,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                offset: Offset(15, 0),
-                blurRadius: 35,
-                spreadRadius: -10,
-              ),
-            ],
-          ),
         ),
       ],
     );
@@ -409,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _carouselRecomCardItems(
-      double height, Size size, List<Place> data) {
+      double parentHeight, Size size, List<Place> data) {
     return data
         .map(
           (e) => InkWell(
@@ -417,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
               debugPrint(e.name);
             },
             child: Container(
-              height: height / 3,
+              height: parentHeight / 3,
               width: size.width * 1 / 3,
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
@@ -503,4 +401,139 @@ class _HomeScreenState extends State<HomeScreen> {
         )
         .toList();
   }
+
+  Widget _buildTeamsPage(Size size) {
+    // var height = size.height + size.height * 1 / 4;
+    return Container(
+      color: MyColors.whiteColor,
+      // height: height,
+      padding: const EdgeInsets.symmetric(vertical: 32),
+      child: Column(
+        children: <Widget>[
+          _addTitleV1("Meet Our Teams", MyColors.semiDarkColor),
+          SizedBox(height: 16),
+          for (var i = 0; i < TeamProfile.TeamsProfile.length; i++)
+            _teamsCardItem(size, TeamProfile.TeamsProfile[i],
+                isLeft: i % 2 == 0)
+        ],
+      ),
+    );
+  }
+
+  Widget _teamsCardItem(Size size, TeamProfile profile, {bool isLeft = true}) {
+    var width = size.width / 2;
+    var height = width - width / 4;
+    var widthSide = width / 4;
+    var heightSide = height * 2 / 3;
+
+    mText(text, {isSubText = false}) => Text(
+          text,
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: MyColors.semiDarkColor,
+            fontSize: (height / 2) / (isSubText ? 6 : 5),
+            fontWeight: isSubText ? FontWeight.normal : FontWeight.bold,
+            overflow: TextOverflow.clip,
+          ),
+        );
+
+    mIcon(src, url) => InkWell(
+          child: Container(
+            width: widthSide * 2 / 3,
+            height: widthSide * 2 / 3,
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: MyColors.whiteColor,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: SvgPicture.asset(src, color: MyColors.primaryColor),
+          ),
+          onTap: () async {
+            if (await canLaunchUrl(Uri.parse(url))) {
+              await launchUrl(Uri.parse(url));
+            } else {
+              debugPrint('Could not launch $url');
+            }
+          },
+        );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Spacer(flex: isLeft ? 1 : 3),
+          Container(
+            width: width,
+            height: height,
+            clipBehavior: Clip.hardEdge,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: MyColors.whiteColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.25),
+                  offset: Offset(15, 15),
+                  blurRadius: 35,
+                  spreadRadius: -10,
+                ),
+              ],
+            ),
+            child: Column(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: MyColors.lightDarkColor,
+                  backgroundImage: profile.imagePath != null
+                      ? NetworkImage(profile.imagePath!)
+                      : null,
+                  radius: (height / 2) * 1.8 / 3,
+                  child: profile.imagePath == null
+                      ? Icon(
+                          Icons.person,
+                          color: MyColors.primaryColor,
+                          size: (height / 2) * 1.8 / 3,
+                        )
+                      : null,
+                ),
+                Spacer(flex: 4),
+                mText(profile.name),
+                Spacer(flex: 1),
+                mText(profile.nim, isSubText: true),
+              ],
+            ),
+          ),
+          Container(
+            width: widthSide,
+            height: heightSide,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              color: MyColors.primaryColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.25),
+                  offset: Offset(15, 0),
+                  blurRadius: 35,
+                  spreadRadius: -10,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                mIcon("assets/icons/linkedin.svg", profile.linkedInUrl),
+                mIcon("assets/icons/github.svg", profile.githubUrl),
+              ],
+            ),
+          ),
+          Spacer(flex: !isLeft ? 1 : 3),
+        ],
+      ),
+    );
+  }
+
 }

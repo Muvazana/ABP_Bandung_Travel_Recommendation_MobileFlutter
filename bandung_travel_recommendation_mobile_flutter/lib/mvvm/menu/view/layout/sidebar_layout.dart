@@ -162,7 +162,7 @@ class _MenuScreenControll extends StatelessWidget {
       builder: (context, child) {
         switch (controller.selectedIndex) {
           case 0:
-            return HomeScreen();
+            return HomeScreen(title: "Home");
           case 1:
             return Center(
               child: Text(
