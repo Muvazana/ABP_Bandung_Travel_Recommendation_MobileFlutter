@@ -1,24 +1,28 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/home_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
+import 'package:provider/provider.dart';
 
 class SidebarLayout extends StatelessWidget {
   static const routeName = '/Menu';
   SidebarLayout({Key? key}) : super(key: key);
 
-  final _controller = SidebarXController(selectedIndex: 0, extended: true);
+  final _controller = SidebarXController(selectedIndex: 2, extended: true);
 
   final _textStyle = const TextStyle(
       color: MyColors.whiteColor, fontSize: 16, fontWeight: FontWeight.normal);
   final _divider =
       const Divider(color: MyColors.whiteColor, indent: 8, endIndent: 8);
   final _itemPadding = const EdgeInsets.only(left: 24);
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: AppBar(title: Text("Test")),
+      appBar: context.watch<SidebarViewModel>().appBarTitle,
       drawer: SidebarX(
         controller: _controller,
         theme: SidebarXTheme(
@@ -121,21 +125,33 @@ class SidebarLayout extends StatelessWidget {
         footerDivider: this._divider,
         showToggleButton: false,
         items: [
-          const SidebarXItem(
+          SidebarXItem(
             icon: Icons.home,
             label: 'Home',
+            onTap: () => context
+                .read<SidebarViewModel>()
+                .setOnSidebarItemClicked(0),
           ),
-          const SidebarXItem(
+          SidebarXItem(
             icon: Icons.dashboard_rounded,
             label: 'Dashboard',
+            onTap: () => context
+                .read<SidebarViewModel>()
+                .setOnSidebarItemClicked(1),
           ),
-          const SidebarXItem(
+          SidebarXItem(
             icon: Icons.favorite,
             label: 'Favorite',
+            onTap: () => context
+                .read<SidebarViewModel>()
+                .setOnSidebarItemClicked(2),
           ),
-          const SidebarXItem(
+          SidebarXItem(
             icon: Icons.person,
             label: 'Profile',
+            onTap: () => context
+                .read<SidebarViewModel>()
+                .setOnSidebarItemClicked(3),
           ),
         ],
       ),
@@ -156,7 +172,6 @@ class _MenuScreenControll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
@@ -166,21 +181,16 @@ class _MenuScreenControll extends StatelessWidget {
           case 1:
             return Center(
               child: Text(
-                'Search',
+                'Dashboard',
                 style: TextStyle(color: Colors.black),
               ),
             );
           case 2:
-            return Center(
-              child: Text(
-                'People',
-                style: TextStyle(color: Colors.black),
-              ),
-            );
+            return FavoriteScreen();
           case 3:
             return Center(
               child: Text(
-                'Favorites',
+                'Profile',
                 style: TextStyle(color: Colors.black),
               ),
             );

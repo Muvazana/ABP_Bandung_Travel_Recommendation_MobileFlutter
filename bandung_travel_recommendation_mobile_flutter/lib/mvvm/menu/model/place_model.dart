@@ -4,10 +4,10 @@
 
 import 'dart:convert';
 
-List<Place> placeFromMap(String str) =>
+List<Place> placesFromMap(String str) =>
     List<Place>.from(json.decode(str).map((x) => Place.fromMap(x)));
 
-String placeToMap(List<Place> data) =>
+String placesToMap(List<Place> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class Place {
@@ -73,6 +73,24 @@ class Place {
         "place_type": placeType.toMap(),
       };
 
+  static List<Place> dataDummyList({int count = 20}) => List.generate(
+    count,
+    (index) => Place(
+      id: index,
+      name: "Place $index",
+      typePlaceId: 0,
+      rate: 0,
+      description: "Place $index Description",
+      imageName: "museum.jpg",
+      alamat: "",
+      latitude: "",
+      longitude: "",
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      view: index * 2 + index,
+      placeType: PlaceType.dataDummy(),
+    ),
+  );
 }
 
 class PlaceType {

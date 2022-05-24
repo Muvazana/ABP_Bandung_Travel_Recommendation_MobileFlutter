@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/team_profile_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
@@ -28,25 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     {"title": "Mall", "image_name": "mall.jpg"},
     {"title": "Outlet", "image_name": "outlet.jpg"},
   ];
-
-  final _dataRecomPlace = List.generate(
-    20,
-    (index) => Place(
-      id: index,
-      name: "Place $index",
-      typePlaceId: 0,
-      rate: 0,
-      description: "Place $index Description",
-      imageName: "museum.jpg",
-      alamat: "",
-      latitude: "",
-      longitude: "",
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      view: 0,
-      placeType: PlaceType.dataDummy(),
-    ),
-  );
 
   _addTitleV1(String title, Color color) => Text(
         title,
@@ -241,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Recommended Places Page
   Widget _buildRecomPage(Size size) {
-    var height = size.height * 4 / 5;
+    var height = size.height * 5 / 6;
     return Container(
       height: height,
       padding: const EdgeInsets.symmetric(vertical: 32),
@@ -254,10 +236,18 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           _addTitleV1("Recommended for you", MyColors.whiteColor),
           SizedBox(height: 24),
-          _buildRecomPageCarousel(_dataRecomPlace, height, size),
+          _buildRecomPageCarousel(Place.dataDummyList(), height, size),
           Spacer(),
-          _buildRecomPageCarousel(_dataRecomPlace, height, size,
+          _buildRecomPageCarousel(Place.dataDummyList(), height, size,
               isPlace: false),
+          Spacer(),
+          TextButtonCustomV1(
+            text: "Schedule Now!",
+            margin: const EdgeInsets.symmetric(horizontal: 32),
+            backgroundColor: MyColors.primaryColor,
+            textColor: MyColors.whiteColor,
+            onPressed: () {},
+          ),
         ],
       ),
     );
@@ -535,5 +525,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }
