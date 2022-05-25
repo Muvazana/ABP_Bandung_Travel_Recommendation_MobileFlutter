@@ -8,6 +8,7 @@ class TextButtonCustomV1 extends StatelessWidget {
   final double? textSize;
   final VoidCallback? onPressed;
   final bool isOutlineType;
+  final double? elevation;
   const TextButtonCustomV1({
     Key? key,
     required this.text,
@@ -18,6 +19,7 @@ class TextButtonCustomV1 extends StatelessWidget {
     this.textSize = 16,
     this.onPressed,
     this.isOutlineType = false,
+    this.elevation,
     this.borderColor = Colors.white,
   }) : super(key: key);
 
@@ -26,10 +28,11 @@ class TextButtonCustomV1 extends StatelessWidget {
     return Container(
       width: this.width,
       margin: this.margin,
-      child: TextButton(
+      child: ElevatedButton(
         onPressed: this.onPressed,
         style: OutlinedButton.styleFrom(
           backgroundColor: this.backgroundColor,
+          elevation: this.isOutlineType ? 0 : this.elevation,
           padding: EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),

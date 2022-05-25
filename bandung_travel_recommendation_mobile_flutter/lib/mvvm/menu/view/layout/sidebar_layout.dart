@@ -1,5 +1,6 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/home_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/profile_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +60,7 @@ class SidebarLayout extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16)),
         headerBuilder: (context, extended) {
           return SafeArea(
-            child: SizedBox(
-              height: 148,
-              child: Column(
+            child: Column(
                 children: <Widget>[
                   CircleAvatar(
                     radius: (size.width * 2 / 3) / 6,
@@ -92,7 +91,6 @@ class SidebarLayout extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
           );
         },
         headerDivider: this._divider,
@@ -188,12 +186,7 @@ class _MenuScreenControll extends StatelessWidget {
           case 2:
             return FavoriteScreen();
           case 3:
-            return Center(
-              child: Text(
-                'Profile',
-                style: TextStyle(color: Colors.black),
-              ),
-            );
+            return ProfileScreen();
           default:
             return Center(
               child: Text(

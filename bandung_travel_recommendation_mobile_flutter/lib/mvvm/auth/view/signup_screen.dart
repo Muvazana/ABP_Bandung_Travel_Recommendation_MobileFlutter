@@ -80,6 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           text: "Sign Up",
           backgroundColor: MyColors.primaryColor,
           textColor: MyColors.whiteColor,
+          elevation: 0,
           onPressed: () {
             if (this._formKey.currentState!.validate()) {
               debugPrint("Valid");

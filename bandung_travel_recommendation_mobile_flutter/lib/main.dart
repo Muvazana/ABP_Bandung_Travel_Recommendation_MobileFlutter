@@ -2,6 +2,7 @@ import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/sign
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/layout/sidebar_layout.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/profile_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/routes.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
@@ -11,7 +12,10 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => SidebarViewModel())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => SidebarViewModel()),
+        ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+      ],
       child: MyApp(),
     ),
   );

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/team_profile_model.dart';

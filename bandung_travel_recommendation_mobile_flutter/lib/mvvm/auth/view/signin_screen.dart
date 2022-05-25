@@ -70,6 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
           text: "Sign In",
           backgroundColor: MyColors.primaryColor,
           textColor: MyColors.whiteColor,
+          elevation: 0,
           onPressed: () {
             if (this._formKey.currentState!.validate()) {
               debugPrint("Valid");

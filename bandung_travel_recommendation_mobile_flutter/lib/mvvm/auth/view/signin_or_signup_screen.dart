@@ -56,6 +56,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       text: "Sign In",
                       backgroundColor: MyColors.whiteColor,
                       textColor: MyColors.semiDarkColor,
+                      elevation: 0,
                       onPressed: () {},
                     ),
                     SizedBox(height: 3),

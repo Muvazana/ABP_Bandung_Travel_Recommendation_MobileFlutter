@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 
 List<FavoritePlace> favoritePlaceFromMap(String str) =>
@@ -42,7 +43,7 @@ class FavoritePlace {
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
           places: Place.dataDummyList(count: count * 5)
-              .getRange(index , index + 5)
+              .getRange(index , index + Random(index).nextInt(5) + 5)
               .toList(),
         ),
       );
