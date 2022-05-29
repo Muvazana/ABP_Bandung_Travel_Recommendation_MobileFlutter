@@ -1,7 +1,5 @@
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_or_signup_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/layout/sidebar_layout.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/add_schedule_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/add_schedule_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/profile_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/routes.dart';
@@ -15,6 +13,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => SidebarViewModel()),
         ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+        ChangeNotifierProvider(create: (_) => AddScheduleViewModel()),
       ],
       child: MyApp(),
     ),
@@ -29,10 +28,10 @@ class MyApp extends StatelessWidget {
       title: 'Bandung Travel Recommendation',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: MyColors.primaryColor,
       ),
-      initialRoute: SidebarLayout.routeName,
+      initialRoute: AddScheduleScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

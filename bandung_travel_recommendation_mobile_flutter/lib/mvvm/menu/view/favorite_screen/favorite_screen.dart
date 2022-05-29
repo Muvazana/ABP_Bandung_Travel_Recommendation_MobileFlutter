@@ -1,3 +1,5 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/modal_bottom_sheet_custom.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/timeline_tile_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/favorite_place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -117,49 +119,20 @@ class _card_expansion_custom_v1State extends State<card_expansion_custom_v1> {
                   padding: const EdgeInsets.all(8),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemBuilder: (context, index) => _timelineTile(
+                    itemBuilder: (context, index) => TimeLineTileCustom(
                       widget.favoritePlace.places.elementAt(index).name,
                       isFirst: index == 0,
                       isLast: index == widget.favoritePlace.places.length - 1,
+                      onTap: () => MyModalBottomSheetCustom.showPlaceDetail(
+                        context,
+                        place: widget.favoritePlace.places.elementAt(index),
+                      ),
                     ),
                     itemCount: widget.favoritePlace.places.length,
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _timelineTile(
-    String title, {
-    bool isFirst = false,
-    bool isLast = false,
-  }) {
-    return TimelineTile(
-      alignment: TimelineAlign.start,
-      isFirst: isFirst,
-      isLast: isLast,
-      indicatorStyle:
-          IndicatorStyle(width: 12, height: 12, color: MyColors.primaryColor),
-      afterLineStyle: LineStyle(thickness: 3, color: MyColors.primaryColor),
-      beforeLineStyle: LineStyle(thickness: 3, color: MyColors.primaryColor),
-      endChild: Container(
-        margin: const EdgeInsets.only(left: 8),
-        alignment: Alignment.centerLeft,
-        constraints: const BoxConstraints(
-          minHeight: 30,
-        ),
-        child: Text(
-          title,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: MyColors.semiDarkColor,
-            fontSize: 16,
-            // fontWeight: FontWeight.bold,
           ),
         ),
       ),

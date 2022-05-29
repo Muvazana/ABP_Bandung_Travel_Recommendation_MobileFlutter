@@ -1,4 +1,4 @@
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/favorite_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/home_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/profile_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';

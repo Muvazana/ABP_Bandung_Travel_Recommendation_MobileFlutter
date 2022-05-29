@@ -1,6 +1,7 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_or_signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/add_schedule_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/layout/sidebar_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,10 @@ class RouteGenerator {
       case SidebarLayout.routeName:
         return MaterialPageRoute(builder: (context) {
           return SidebarLayout();
+        });
+      case AddScheduleScreen.routeName:
+        return MaterialPageRoute(builder: (context) {
+          return AddScheduleScreen();
         });
       default:
         return _errorRoute();

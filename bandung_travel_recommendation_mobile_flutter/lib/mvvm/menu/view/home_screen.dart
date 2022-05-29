@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: isSliverCollapse
                     ? Text(
                         this.widget.title,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold, color: MyColors.whiteColor),
                       )
                     : null,
                 background: Stack(

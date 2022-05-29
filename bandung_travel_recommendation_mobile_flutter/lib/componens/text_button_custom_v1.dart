@@ -6,7 +6,7 @@ class TextButtonCustomV1 extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Color? backgroundColor, textColor, borderColor;
   final double? textSize;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final bool isOutlineType;
   final double? elevation;
   const TextButtonCustomV1({
@@ -17,7 +17,7 @@ class TextButtonCustomV1 extends StatelessWidget {
     this.backgroundColor,
     this.textColor = Colors.white,
     this.textSize = 16,
-    this.onPressed,
+    required this.onPressed,
     this.isOutlineType = false,
     this.elevation,
     this.borderColor = Colors.white,
