@@ -3,7 +3,7 @@ import 'package:bandung_travel_recommendation_mobile_flutter/componens/modal_bot
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/timeline_tile_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/add_schedule_view_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/add_schedule_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

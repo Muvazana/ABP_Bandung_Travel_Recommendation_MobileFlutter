@@ -1,6 +1,6 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_form_custom_v1.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/profile_view_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/profile_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';

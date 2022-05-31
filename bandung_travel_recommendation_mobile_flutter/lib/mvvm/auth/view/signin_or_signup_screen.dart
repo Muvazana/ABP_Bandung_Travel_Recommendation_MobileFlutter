@@ -1,4 +1,7 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/snackbar_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,9 +47,10 @@ class SignInOrSignUpScreen extends StatelessWidget {
                   "We discover The Best Tour and Best Place in \nBandung City",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal),
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
                 Spacer(flex: 2),
                 Column(
@@ -57,31 +61,38 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       backgroundColor: MyColors.whiteColor,
                       textColor: MyColors.semiDarkColor,
                       elevation: 0,
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, SignInScreen.routeName),
                     ),
                     SizedBox(height: 3),
-                    Row(children: <Widget>[
-                      Expanded(child: Divider(color: MyColors.whiteColor, thickness: 1, endIndent: 6)),
-                      Text("OR"),
-                      Expanded(child: Divider(color: MyColors.whiteColor, thickness: 1, indent: 6)),
-                    ]),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Divider(
+                            color: MyColors.whiteColor,
+                            thickness: 1,
+                            endIndent: 6,
+                          ),
+                        ),
+                        Text("OR"),
+                        Expanded(
+                          child: Divider(
+                            color: MyColors.whiteColor,
+                            thickness: 1,
+                            indent: 6,
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: 3),
                     TextButtonCustomV1(
                       text: "Sign Up",
                       backgroundColor: Colors.transparent,
                       textColor: MyColors.whiteColor,
                       isOutlineType: true,
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, SignUpScreen.routeName),
                     ),
-                    // BtnSignInOrSignUp(
-                    //   text: "Sign In",
-                    //   onPressed: () {},
-                    // ),
-                    // SizedBox(width: 15),
-                    // BtnSignInOrSignUp(
-                    //   text: "Sign Up",
-                    //   onPressed: () {},
-                    // ),
                   ],
                 ),
                 Spacer(flex: 2),

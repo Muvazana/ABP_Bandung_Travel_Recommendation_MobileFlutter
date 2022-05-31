@@ -1,24 +1,18 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_form_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/layout/signin_or_signup_layout.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   static const routeName = '/Auth/SignInScreen';
-  const SignInScreen({Key? key}) : super(key: key);
-
-  @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
+  SignInScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
     return SignInOrSignUpLayout(
       formKey: this._formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -32,15 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
         SizedBox(height: 12),
-        // Text(
-        //   "Error Message in Here",
-        //   style: TextStyle(
-        //     color: MyColors.ErrorColor,
-        //     fontWeight: FontWeight.normal,
-        //     fontSize: 10,
-        //   ),
-        // ),
-        // SizedBox(height: 6),
         TextFormCustomV1(
           hintText: "Enter your email",
           icon: Icon(
@@ -92,11 +77,13 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Text(
               "Sign Up",
               style: TextStyle(
-                  color: MyColors.darkColor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold),
+                color: MyColors.darkColor,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            onTap: () {},
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, SignUpScreen.routeName),
           ),
         ]),
       ],

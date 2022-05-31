@@ -1,7 +1,7 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/favorite_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/home_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/profile_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_view_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
