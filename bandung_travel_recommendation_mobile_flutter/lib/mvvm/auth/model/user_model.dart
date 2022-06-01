@@ -45,13 +45,27 @@ class UserModel {
       );
 
   Map<String, dynamic> toMap4Pref() => {
-        "email": email,
-        "name": name,
-        "role": role,
-        "token": token,
+        "email": this.email,
+        "name": this.name,
+        "role": this.role,
+        "token": this.token,
       };
-  Map<String, dynamic> toMap4EditAPI() => {
-        "inputName": name,
-        "inputPassword": role,
+  Map<String, dynamic> toMap4API() => {
+        "inputEmail": this.email,
+        "inputName": this.name,
+        "inputPassword": this.role,
       };
+  // Map<String, dynamic> toMap4EditAPI() => {
+  //       "inputName": this.name,
+  //       "inputPassword": this.role,
+  //     };
+  // Map<String, dynamic> toMap4RegisterAPI() => {
+  //       "inputEmail": this.email,
+  //       "inputName": this.name,
+  //       "inputPassword": this.role,
+  //     };
+  // Map<String, dynamic> toMap4LoginAPI() => {
+  //       "inputEmail": this.email,
+  //       "inputPassword": this.role,
+  //     };
 }

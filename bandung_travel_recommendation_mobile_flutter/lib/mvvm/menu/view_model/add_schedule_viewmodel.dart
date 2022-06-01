@@ -30,7 +30,7 @@ class AddScheduleViewModel extends ChangeNotifier {
     var isLastStep = (maxStep - 1) == _currentStepperIndex;
     if (isLastStep) {
       // TODO when last step
-      debugPrint("on last step Clicked");
+      debugPrint("on last step Clicked %");
     } else {
       _currentStepperIndex += 1;
     }

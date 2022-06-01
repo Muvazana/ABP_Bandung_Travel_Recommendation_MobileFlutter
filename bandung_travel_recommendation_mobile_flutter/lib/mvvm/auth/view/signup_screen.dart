@@ -71,8 +71,8 @@ class SignUpScreen extends StatelessWidget {
             if (this._formKey.currentState!.validate()) {
               debugPrint("Valid");
             } else {
-              // debugPrint("Not Valid");
-              LoadingCustom.show();
+              debugPrint("Not Valid");
+              LoadingCustom.show(context);
             }
           },
         ),

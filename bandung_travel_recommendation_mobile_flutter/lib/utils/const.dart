@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyGeneralConst {
-  static const BASE_URL = "http://127.0.0.1:8000";
-  static const API_URL = "${BASE_URL}/api";
-  static const API_IMAGE_URL = "${BASE_URL}/img/destination";
+  static const _BASE_URL = "http://10.0.2.2:8000";
+  static const API_URL = "${_BASE_URL}/api";
+  static const API_IMAGE_URL = "${_BASE_URL}/img/destination";
   static const PREF_USER_KEY = "PREF_USER_KEY";
 }
 

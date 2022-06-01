@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoadingCustom {
-  static BuildContext? _context;
-
-  static set setContext(BuildContext context) => _context = context;
-
-  static show() {
+  static show(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [
@@ -19,12 +15,12 @@ class LoadingCustom {
     );
     showDialog(
       barrierDismissible: true,
-      context: _context!,
+      context: context,
       builder: (BuildContext context) {
         return alert;
       },
     );
   }
 
-  static dismiss() => Navigator.pop(_context!);
+  static dismiss(BuildContext context) => Navigator.pop(context);
 }
