@@ -58,13 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
               snap: _snap,
               floating: _floating,
               expandedHeight: size.height - AppBar().preferredSize.height,
-              backgroundColor: MyColors.primaryColor,
+              backgroundColor: MyColorsConst.primaryColor,
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: isSliverCollapse
                     ? Text(
                         this.widget.title,
-                        style: TextStyle(fontWeight: FontWeight.bold, color: MyColors.whiteColor),
+                        style: TextStyle(fontWeight: FontWeight.bold, color: MyColorsConst.whiteColor),
                       )
                     : null,
                 background: Stack(
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'assets/images/logo_v2.svg',
             alignment: Alignment.center,
             width: size.width * 2 / 3,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
           ),
         ),
         Positioned(
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
               text: TextSpan(
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: MyColors.whiteColor,
+                  color: MyColorsConst.whiteColor,
                   height: 0.8,
                 ),
                 children: <TextSpan>[
@@ -138,13 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Icon(
                 Icons.keyboard_double_arrow_down,
-                color: MyColors.whiteColor,
+                color: MyColorsConst.whiteColor,
                 size: 32,
               ),
               Text(
                 "Scroll Down",
                 style: TextStyle(
-                  color: MyColors.whiteColor,
+                  color: MyColorsConst.whiteColor,
                   fontWeight: FontWeight.normal,
                   fontSize: 14,
                 ),
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: 32),
       child: Column(
         children: <Widget>[
-          _addTitleV1("Discover Our Collection", MyColors.semiDarkColor),
+          _addTitleV1("Discover Our Collection", MyColorsConst.semiDarkColor),
           SizedBox(height: 24),
           Expanded(
             child: Container(
@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 e["title"]!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: MyColors.whiteColor,
+                  color: MyColorsConst.whiteColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -232,18 +232,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          _addTitleV1("Recommended for you", MyColors.whiteColor),
+          _addTitleV1("Recommended for you", MyColorsConst.whiteColor),
           SizedBox(height: 24),
-          _buildRecomPageCarousel(Place.dataDummyList(), height, size),
+          _buildRecomPageCarousel(PlaceModel.dataDummyList(), height, size),
           Spacer(),
-          _buildRecomPageCarousel(Place.dataDummyList(), height, size,
+          _buildRecomPageCarousel(PlaceModel.dataDummyList(), height, size,
               isPlace: false),
           Spacer(),
           TextButtonCustomV1(
             text: "Schedule Now!",
             margin: const EdgeInsets.symmetric(horizontal: 32),
-            backgroundColor: MyColors.primaryColor,
-            textColor: MyColors.whiteColor,
+            backgroundColor: MyColorsConst.primaryColor,
+            textColor: MyColorsConst.whiteColor,
             onPressed: () {},
           ),
         ],
@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildRecomPageCarousel(List<Place> data, double height, Size size,
+  Widget _buildRecomPageCarousel(List<PlaceModel> data, double height, Size size,
       {bool isPlace = true}) {
     recomTitle(String title) => Expanded(
           flex: 1,
@@ -259,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               title,
               style: TextStyle(
-                color: MyColors.whiteColor,
+                color: MyColorsConst.whiteColor,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -295,7 +295,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _carouselRecomCardItems(
-      double parentHeight, Size size, List<Place> data) {
+      double parentHeight, Size size, List<PlaceModel> data) {
     return data
         .map(
           (e) => InkWell(
@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: size.width * 1 / 3,
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                color: MyColors.whiteColor,
+                color: MyColorsConst.whiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(
@@ -341,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
-                                  color: MyColors.semiDarkColor,
+                                  color: MyColorsConst.semiDarkColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -353,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
-                                  color: MyColors.semiDarkColor,
+                                  color: MyColorsConst.semiDarkColor,
                                   fontSize: 12,
                                 ),
                               ),
@@ -363,7 +363,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               Icon(
                                 Icons.visibility,
-                                color: MyColors.semiDarkColor,
+                                color: MyColorsConst.semiDarkColor,
                                 size: 14,
                               ),
                               SizedBox(width: 6),
@@ -372,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  color: MyColors.semiDarkColor,
+                                  color: MyColorsConst.semiDarkColor,
                                   fontSize: 12,
                                 ),
                               ),
@@ -393,22 +393,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTeamsPage(Size size) {
     // var height = size.height + size.height * 1 / 4;
     return Container(
-      color: MyColors.whiteColor,
+      color: MyColorsConst.whiteColor,
       // height: height,
       padding: const EdgeInsets.symmetric(vertical: 32),
       child: Column(
         children: <Widget>[
-          _addTitleV1("Meet Our Teams", MyColors.semiDarkColor),
+          _addTitleV1("Meet Our Teams", MyColorsConst.semiDarkColor),
           SizedBox(height: 16),
-          for (var i = 0; i < TeamProfile.TeamsProfile.length; i++)
-            _teamsCardItem(size, TeamProfile.TeamsProfile[i],
+          for (var i = 0; i < TeamProfileModel.TeamsProfile.length; i++)
+            _teamsCardItem(size, TeamProfileModel.TeamsProfile[i],
                 isLeft: i % 2 == 0)
         ],
       ),
     );
   }
 
-  Widget _teamsCardItem(Size size, TeamProfile profile, {bool isLeft = true}) {
+  Widget _teamsCardItem(Size size, TeamProfileModel profile, {bool isLeft = true}) {
     var width = size.width / 2;
     var height = width - width / 4;
     var widthSide = width / 4;
@@ -419,7 +419,7 @@ class _HomeScreenState extends State<HomeScreen> {
           maxLines: 1,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: MyColors.semiDarkColor,
+            color: MyColorsConst.semiDarkColor,
             fontSize: (height / 2) / (isSubText ? 6 : 5),
             fontWeight: isSubText ? FontWeight.normal : FontWeight.bold,
             overflow: TextOverflow.clip,
@@ -432,10 +432,10 @@ class _HomeScreenState extends State<HomeScreen> {
             height: widthSide * 2 / 3,
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
-              color: MyColors.whiteColor,
+              color: MyColorsConst.whiteColor,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: SvgPicture.asset(src, color: MyColors.primaryColor),
+            child: SvgPicture.asset(src, color: MyColorsConst.primaryColor),
           ),
           onTap: () async {
             if (await canLaunchUrl(Uri.parse(url))) {
@@ -457,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
             clipBehavior: Clip.hardEdge,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: MyColors.whiteColor,
+              color: MyColorsConst.whiteColor,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -471,7 +471,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: <Widget>[
                 CircleAvatar(
-                  backgroundColor: MyColors.lightDarkColor,
+                  backgroundColor: MyColorsConst.lightDarkColor,
                   backgroundImage: profile.imagePath != null
                       ? NetworkImage(profile.imagePath!)
                       : null,
@@ -479,7 +479,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: profile.imagePath == null
                       ? Icon(
                           Icons.person,
-                          color: MyColors.primaryColor,
+                          color: MyColorsConst.primaryColor,
                           size: (height / 2) * 1.8 / 3,
                         )
                       : null,
@@ -496,7 +496,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: heightSide,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color: MyColors.primaryColor,
+              color: MyColorsConst.primaryColor,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(10),
                 bottomRight: Radius.circular(10),

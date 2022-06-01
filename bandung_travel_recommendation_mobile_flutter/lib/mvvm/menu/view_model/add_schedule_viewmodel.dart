@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class AddScheduleViewModel extends ChangeNotifier {
   int _currentStepperIndex = 0;
-  List<Place> _selectedPlaces = [];
+  List<PlaceModel> _selectedPlaces = [];
 
   int get currentStepperIndex => _currentStepperIndex;
-  List<Place> get getSelectedPlaces => _selectedPlaces;
+  List<PlaceModel> get getSelectedPlaces => _selectedPlaces;
 
   StepState getStepState(int stepperIndex) {
     return _currentStepperIndex > stepperIndex
@@ -16,12 +16,12 @@ class AddScheduleViewModel extends ChangeNotifier {
             : StepState.indexed;
   }
 
-  void addSelectedPlaces(Place place) {
+  void addSelectedPlaces(PlaceModel place) {
     _selectedPlaces.add(place);
     notifyListeners();
   }
 
-  void removeSelectedPlaces(Place place) {
+  void removeSelectedPlaces(PlaceModel place) {
     _selectedPlaces.removeWhere((element) => place.id == element.id,);
     notifyListeners();
   }

@@ -14,9 +14,9 @@ class SidebarLayout extends StatelessWidget {
   final _controller = SidebarXController(selectedIndex: 2, extended: true);
 
   final _textStyle = const TextStyle(
-      color: MyColors.whiteColor, fontSize: 16, fontWeight: FontWeight.normal);
+      color: MyColorsConst.whiteColor, fontSize: 16, fontWeight: FontWeight.normal);
   final _divider =
-      const Divider(color: MyColors.whiteColor, indent: 8, endIndent: 8);
+      const Divider(color: MyColorsConst.whiteColor, indent: 8, endIndent: 8);
   final _itemPadding = const EdgeInsets.only(left: 24);
   
   @override
@@ -40,21 +40,21 @@ class SidebarLayout extends StatelessWidget {
           selectedItemDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: MyColors.primaryLightColor,
+              color: MyColorsConst.primaryLightColor,
             ),
             gradient: const LinearGradient(
-              colors: [MyColors.primaryLightColor, MyColors.primaryColor],
+              colors: [MyColorsConst.primaryLightColor, MyColorsConst.primaryColor],
             ),
           ),
           iconTheme: const IconThemeData(
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
         ),
         extendedTheme: SidebarXTheme(
             width: size.width * 2 / 3,
             decoration: BoxDecoration(
-              color: MyColors.primaryColor,
+              color: MyColorsConst.primaryColor,
             ),
             // margin: EdgeInsets.only(right: 10),
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16)),
@@ -64,13 +64,13 @@ class SidebarLayout extends StatelessWidget {
                 children: <Widget>[
                   CircleAvatar(
                     radius: (size.width * 2 / 3) / 6,
-                    backgroundColor: MyColors.lightDarkColor,
+                    backgroundColor: MyColorsConst.lightDarkColor,
                   ),
                   SizedBox(height: 12),
                   Text(
                     "Full Name",
                     style: TextStyle(
-                      color: MyColors.whiteColor,
+                      color: MyColorsConst.whiteColor,
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
@@ -81,7 +81,7 @@ class SidebarLayout extends StatelessWidget {
                   Text(
                     "Example@email.com",
                     style: TextStyle(
-                      color: MyColors.whiteColor,
+                      color: MyColorsConst.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
                     ),
@@ -105,7 +105,7 @@ class SidebarLayout extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.logout,
-                    color: MyColors.whiteColor,
+                    color: MyColorsConst.whiteColor,
                     size: 24,
                   ),
                   Padding(

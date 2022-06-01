@@ -1,4 +1,3 @@
-import 'package:bandung_travel_recommendation_mobile_flutter/componens/snackbar_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
@@ -58,8 +57,8 @@ class SignInOrSignUpScreen extends StatelessWidget {
                   children: <Widget>[
                     TextButtonCustomV1(
                       text: "Sign In",
-                      backgroundColor: MyColors.whiteColor,
-                      textColor: MyColors.semiDarkColor,
+                      backgroundColor: MyColorsConst.whiteColor,
+                      textColor: MyColorsConst.semiDarkColor,
                       elevation: 0,
                       onPressed: () =>
                           Navigator.pushNamed(context, SignInScreen.routeName),
@@ -69,7 +68,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Divider(
-                            color: MyColors.whiteColor,
+                            color: MyColorsConst.whiteColor,
                             thickness: 1,
                             endIndent: 6,
                           ),
@@ -77,7 +76,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                         Text("OR"),
                         Expanded(
                           child: Divider(
-                            color: MyColors.whiteColor,
+                            color: MyColorsConst.whiteColor,
                             thickness: 1,
                             indent: 6,
                           ),
@@ -88,7 +87,7 @@ class SignInOrSignUpScreen extends StatelessWidget {
                     TextButtonCustomV1(
                       text: "Sign Up",
                       backgroundColor: Colors.transparent,
-                      textColor: MyColors.whiteColor,
+                      textColor: MyColorsConst.whiteColor,
                       isOutlineType: true,
                       onPressed: () =>
                           Navigator.pushNamed(context, SignUpScreen.routeName),

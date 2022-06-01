@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
+class MyGeneralConst {
+  static const BASE_URL = "http://127.0.0.1:8000";
+  static const API_URL = "${BASE_URL}/api";
+  static const API_IMAGE_URL = "${BASE_URL}/img/destination";
+  static const PREF_USER_KEY = "PREF_USER_KEY";
+}
 
-// const primaryColor = Color(0xFF685BFF);
-// const canvasColor = Color(0xFF2E2E48);
-// const scaffoldBackgroundColor = Color(0xFF464667);
-// const accentCanvasColor = Color(0xFF3E3E61);
-// const white = Colors.white;
-// final actionColor = const Color(0xFF5F5FA7).withOpacity(0.6);
-
-
-class MyColors{
+class MyColorsConst {
   static const whiteColor = Colors.white;
   static const lightDarkColor = Color.fromARGB(255, 219, 219, 219);
   static const semiDarkColor = Color.fromARGB(255, 77, 77, 77);

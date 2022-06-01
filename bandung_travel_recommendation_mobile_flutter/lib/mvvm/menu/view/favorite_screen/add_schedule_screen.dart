@@ -12,7 +12,7 @@ class AddScheduleScreen extends StatelessWidget {
   static const routeName = '/Menu/AddScheduleScreen';
   const AddScheduleScreen({Key? key}) : super(key: key);
   final TextStyle textStyle = const TextStyle(
-    color: MyColors.semiDarkColor,
+    color: MyColorsConst.semiDarkColor,
     fontSize: 14,
   );
   @override
@@ -20,7 +20,7 @@ class AddScheduleScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var watchScheduleProvider = context.watch<AddScheduleViewModel>();
     var readScheduleProvider = context.read<AddScheduleViewModel>();
-    var places = Place.dataDummyList(count: 25);
+    var places = PlaceModel.dataDummyList(count: 25);
     List<Step> getSteps = [
       Step(
         state: readScheduleProvider.getStepState(0),
@@ -150,7 +150,7 @@ class AddScheduleScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: MyColors.primaryColor,
+        backgroundColor: MyColorsConst.primaryColor,
       ),
       body: Stepper(
         type: StepperType.horizontal,
@@ -189,8 +189,8 @@ class AddScheduleScreen extends StatelessWidget {
                 child: TextButtonCustomV1(
                   text: "Back",
                   isOutlineType: true,
-                  textColor: MyColors.primaryColor,
-                  borderColor: MyColors.primaryColor,
+                  textColor: MyColorsConst.primaryColor,
+                  borderColor: MyColorsConst.primaryColor,
                   backgroundColor: Colors.transparent,
                   onPressed: readScheduleProvider.onStepCancel,
                 ),
@@ -226,13 +226,13 @@ class AddScheduleScreen extends StatelessWidget {
             },
             icon: Icon(
               Icons.not_listed_location,
-              color: MyColors.whiteColor,
+              color: MyColorsConst.whiteColor,
             ),
             label: Text(
               "Schedule Detail",
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: MyColors.primaryColor,
+            backgroundColor: MyColorsConst.primaryColor,
           ),
           Container(
             child: Center(

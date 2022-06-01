@@ -3,7 +3,6 @@ import 'package:bandung_travel_recommendation_mobile_flutter/componens/timeline_
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/favorite_place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -16,16 +15,16 @@ class FavoriteScreen extends StatelessWidget {
         child: ListView.builder(
           itemBuilder: (context, index) => card_expansion_custom_v1(
             favoritePlace:
-                FavoritePlace.dataDummyList(count: 6).elementAt(index),
+                FavoritePlaceModel.dataDummyList(count: 6).elementAt(index),
           ),
-          itemCount: FavoritePlace.dataDummyList(count: 6).length,
+          itemCount: FavoritePlaceModel.dataDummyList(count: 6).length,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: MyColors.primaryColor,
+        backgroundColor: MyColorsConst.primaryColor,
         child: Icon(
           Icons.add,
-          color: MyColors.whiteColor,
+          color: MyColorsConst.whiteColor,
           size: 32,
         ),
         onPressed: () {
@@ -42,7 +41,7 @@ class card_expansion_custom_v1 extends StatefulWidget {
     required this.favoritePlace,
   }) : super(key: key);
 
-  final FavoritePlace favoritePlace;
+  final FavoritePlaceModel favoritePlace;
 
   @override
   State<card_expansion_custom_v1> createState() =>
@@ -63,7 +62,7 @@ class _card_expansion_custom_v1State extends State<card_expansion_custom_v1> {
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: _isExpanded ? MyColors.primaryColor : MyColors.whiteColor,
+          color: _isExpanded ? MyColorsConst.primaryColor : MyColorsConst.whiteColor,
           semanticContainer: true,
           elevation: 3,
           child: ClipRRect(
@@ -77,10 +76,10 @@ class _card_expansion_custom_v1State extends State<card_expansion_custom_v1> {
               },
               // collapsedBackgroundColor: MyColors.whiteColor,
               // backgroundColor: Colors.transparent,
-              collapsedTextColor: MyColors.semiDarkColor,
-              textColor: MyColors.whiteColor,
-              collapsedIconColor: MyColors.semiDarkColor,
-              iconColor: MyColors.whiteColor,
+              collapsedTextColor: MyColorsConst.semiDarkColor,
+              textColor: MyColorsConst.whiteColor,
+              collapsedIconColor: MyColorsConst.semiDarkColor,
+              iconColor: MyColorsConst.whiteColor,
               tilePadding:
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               title: Column(

@@ -20,7 +20,7 @@ class SignInScreen extends StatelessWidget {
         Text(
           "Welcome Back",
           style: TextStyle(
-            color: MyColors.darkColor,
+            color: MyColorsConst.darkColor,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -30,7 +30,7 @@ class SignInScreen extends StatelessWidget {
           hintText: "Enter your email",
           icon: Icon(
             Icons.email,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -44,7 +44,7 @@ class SignInScreen extends StatelessWidget {
           hintText: "Enter your password",
           icon: Icon(
             Icons.lock_rounded,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
           isPassword: true,
@@ -53,8 +53,8 @@ class SignInScreen extends StatelessWidget {
         SizedBox(height: 8),
         TextButtonCustomV1(
           text: "Sign In",
-          backgroundColor: MyColors.primaryColor,
-          textColor: MyColors.whiteColor,
+          backgroundColor: MyColorsConst.primaryColor,
+          textColor: MyColorsConst.whiteColor,
           elevation: 0,
           onPressed: () {
             if (this._formKey.currentState!.validate()) {
@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
           Text(
             "Don't have an account? ",
             style: TextStyle(
-              color: MyColors.semiDarkColor,
+              color: MyColorsConst.semiDarkColor,
               fontSize: 12,
             ),
           ),
@@ -77,7 +77,7 @@ class SignInScreen extends StatelessWidget {
             child: Text(
               "Sign Up",
               style: TextStyle(
-                color: MyColors.darkColor,
+                color: MyColorsConst.darkColor,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),

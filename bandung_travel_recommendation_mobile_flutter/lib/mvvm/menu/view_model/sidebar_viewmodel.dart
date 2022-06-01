@@ -36,7 +36,7 @@ class SidebarViewModel extends ChangeNotifier {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
-            backgroundColor: MyColors.primaryColor,
+            backgroundColor: MyColorsConst.primaryColor,
           )
         : null;
     notifyListeners();

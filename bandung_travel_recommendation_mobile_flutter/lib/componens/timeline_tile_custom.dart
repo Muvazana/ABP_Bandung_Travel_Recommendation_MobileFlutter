@@ -23,9 +23,9 @@ class TimeLineTileCustom extends StatelessWidget {
         isFirst: isFirst,
         isLast: isLast,
         indicatorStyle:
-            IndicatorStyle(width: 12, height: 12, color: MyColors.primaryColor),
-        afterLineStyle: LineStyle(thickness: 3, color: MyColors.primaryColor),
-        beforeLineStyle: LineStyle(thickness: 3, color: MyColors.primaryColor),
+            IndicatorStyle(width: 12, height: 12, color: MyColorsConst.primaryColor),
+        afterLineStyle: LineStyle(thickness: 3, color: MyColorsConst.primaryColor),
+        beforeLineStyle: LineStyle(thickness: 3, color: MyColorsConst.primaryColor),
         endChild: Container(
           margin: const EdgeInsets.only(left: 8),
           alignment: Alignment.centerLeft,
@@ -37,7 +37,7 @@ class TimeLineTileCustom extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              color: MyColors.semiDarkColor,
+              color: MyColorsConst.semiDarkColor,
               fontSize: 16,
               // fontWeight: FontWeight.bold,
             ),

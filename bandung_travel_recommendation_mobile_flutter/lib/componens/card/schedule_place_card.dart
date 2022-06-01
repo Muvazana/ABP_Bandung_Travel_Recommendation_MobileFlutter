@@ -25,7 +25,7 @@ class SchedulePlaceCard extends StatefulWidget {
 class _SchedulePlaceCardState extends State<SchedulePlaceCard> {
   late bool _isSelected;
   TextStyle textStyle = const TextStyle(
-    color: MyColors.semiDarkColor,
+    color: MyColorsConst.semiDarkColor,
     fontSize: 14,
   );
   @override
@@ -42,7 +42,7 @@ class _SchedulePlaceCardState extends State<SchedulePlaceCard> {
       height: height,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: MyColors.whiteColor,
+        color: MyColorsConst.whiteColor,
         semanticContainer: true,
         elevation: 3,
         child: InkWell(
@@ -101,7 +101,7 @@ class _SchedulePlaceCardState extends State<SchedulePlaceCard> {
                           children: <Widget>[
                             Icon(
                               Icons.visibility,
-                              color: MyColors.semiDarkColor,
+                              color: MyColorsConst.semiDarkColor,
                               size: 16,
                             ),
                             SizedBox(width: 6),
@@ -121,11 +121,11 @@ class _SchedulePlaceCardState extends State<SchedulePlaceCard> {
                   Container(
                     width: 50,
                     height: height,
-                    color: MyColors.primaryColor,
+                    color: MyColorsConst.primaryColor,
                     child: Center(
                       child: Icon(
                         Icons.check,
-                        color: MyColors.whiteColor,
+                        color: MyColorsConst.whiteColor,
                         size: 24,
                       ),
                     ),

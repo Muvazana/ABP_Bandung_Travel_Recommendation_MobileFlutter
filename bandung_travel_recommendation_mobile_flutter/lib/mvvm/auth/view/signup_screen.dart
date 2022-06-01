@@ -1,3 +1,4 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/loading_cutom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_form_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/layout/signin_or_signup_layout.dart';
@@ -20,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
         Text(
           "Create account",
           style: TextStyle(
-            color: MyColors.darkColor,
+            color: MyColorsConst.darkColor,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -30,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
           hintText: "Enter your name",
           icon: Icon(
             Icons.person,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
           validator: RequiredValidator(errorText: "* Required!"),
@@ -40,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
           hintText: "Enter your email",
           icon: Icon(
             Icons.email,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -54,7 +55,7 @@ class SignUpScreen extends StatelessWidget {
           hintText: "Enter your password",
           icon: Icon(
             Icons.lock_rounded,
-            color: MyColors.whiteColor,
+            color: MyColorsConst.whiteColor,
             size: 24,
           ),
           isPassword: true,
@@ -63,14 +64,15 @@ class SignUpScreen extends StatelessWidget {
         SizedBox(height: 8),
         TextButtonCustomV1(
           text: "Sign Up",
-          backgroundColor: MyColors.primaryColor,
-          textColor: MyColors.whiteColor,
+          backgroundColor: MyColorsConst.primaryColor,
+          textColor: MyColorsConst.whiteColor,
           elevation: 0,
           onPressed: () {
             if (this._formKey.currentState!.validate()) {
               debugPrint("Valid");
             } else {
-              debugPrint("Not Valid");
+              // debugPrint("Not Valid");
+              LoadingCustom.show();
             }
           },
         ),
@@ -79,7 +81,7 @@ class SignUpScreen extends StatelessWidget {
           Text(
             "Already have an account? ",
             style: TextStyle(
-              color: MyColors.semiDarkColor,
+              color: MyColorsConst.semiDarkColor,
               fontSize: 12,
             ),
           ),
@@ -87,7 +89,7 @@ class SignUpScreen extends StatelessWidget {
             child: Text(
               "Sign In",
               style: TextStyle(
-                color: MyColors.darkColor,
+                color: MyColorsConst.darkColor,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),

@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                 hintText: "Enter your name",
                 icon: Icon(
                   Icons.person,
-                  color: MyColors.semiDarkColor,
+                  color: MyColorsConst.semiDarkColor,
                   size: 24,
                 ),
                 enable: watchProfileViewModel.isEdit,
@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                 hintText: "Enter your email",
                 icon: Icon(
                   Icons.email,
-                  color: MyColors.semiDarkColor,
+                  color: MyColorsConst.semiDarkColor,
                   size: 24,
                 ),
                 enable: false,
@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                 hintText: "Enter your password",
                 icon: Icon(
                   Icons.lock_rounded,
-                  color: MyColors.semiDarkColor,
+                  color: MyColorsConst.semiDarkColor,
                   size: 24,
                 ),
                 isPassword: true,
@@ -61,8 +61,8 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 12),
               TextButtonCustomV1(
                 text: watchProfileViewModel.isEdit ? "Save Profile" : "Edit Profile",
-                backgroundColor: MyColors.primaryColor,
-                textColor: MyColors.whiteColor,
+                backgroundColor: MyColorsConst.primaryColor,
+                textColor: MyColorsConst.whiteColor,
                 onPressed: () {
                   context.read<ProfileViewModel>().changeEditorSave();
                 },

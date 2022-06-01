@@ -1,5 +1,4 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_or_signup_screen.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/add_schedule_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/add_schedule_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/profile_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/sidebar_viewmodel.dart';
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,
-        primaryColor: MyColors.primaryColor,
+        primaryColor: MyColorsConst.primaryColor,
       ),
       initialRoute: SignInOrSignUpScreen.routeName,
       onGenerateRoute: RouteGenerator.generateRoute,

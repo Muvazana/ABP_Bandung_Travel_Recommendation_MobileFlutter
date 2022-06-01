@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 
-List<FavoritePlace> favoritePlaceFromMap(String str) =>
-    List<FavoritePlace>.from(
-        json.decode(str).map((x) => FavoritePlace.fromMap(x)));
+List<FavoritePlaceModel> favoritePlaceFromMap(String str) =>
+    List<FavoritePlaceModel>.from(
+        json.decode(str).map((x) => FavoritePlaceModel.fromMap(x)));
 
-String favoritePlaceToMap(List<FavoritePlace> data) =>
+String favoritePlaceToMap(List<FavoritePlaceModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
-class FavoritePlace {
-  FavoritePlace({
+class FavoritePlaceModel {
+  FavoritePlaceModel({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
@@ -20,9 +20,9 @@ class FavoritePlace {
   int id;
   DateTime createdAt;
   DateTime updatedAt;
-  List<Place> places;
+  List<PlaceModel> places;
 
-  factory FavoritePlace.fromMap(Map<String, dynamic> json) => FavoritePlace(
+  factory FavoritePlaceModel.fromMap(Map<String, dynamic> json) => FavoritePlaceModel(
         id: json["id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -36,13 +36,13 @@ class FavoritePlace {
         "places": placesToMap(places),
       };
 
-  static List<FavoritePlace> dataDummyList({int count = 5}) => List.generate(
+  static List<FavoritePlaceModel> dataDummyList({int count = 5}) => List.generate(
         count,
-        (index) => FavoritePlace(
+        (index) => FavoritePlaceModel(
           id: index,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
-          places: Place.dataDummyList(count: count * 5)
+          places: PlaceModel.dataDummyList(count: count * 5)
               .getRange(index , index + Random(index).nextInt(5) + 5)
               .toList(),
         ),

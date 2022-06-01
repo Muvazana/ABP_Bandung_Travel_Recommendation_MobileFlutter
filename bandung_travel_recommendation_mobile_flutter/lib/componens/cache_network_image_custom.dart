@@ -50,7 +50,7 @@ class CacheNetworkImageCustom extends StatelessWidget {
               child: Icon(
                 Icons.image_not_supported_sharp,
                 size: 32,
-                color: MyColors.errorColor,
+                color: MyColorsConst.errorColor,
               ),
             ),
     );

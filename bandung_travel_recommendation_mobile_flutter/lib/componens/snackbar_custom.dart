@@ -25,7 +25,7 @@ class SnackbarCustom {
   static SnackBar _flushbarCustomLayout(BuildContext context,
       {required SnackbarCustomModel snackbarCustomModel}) {
     var size = MediaQuery.of(context).size;
-    var textStyle = TextStyle(color: MyColors.semiDarkColor);
+    var textStyle = TextStyle(color: MyColorsConst.semiDarkColor);
     styleStatus(SnackbarCustomEnum snackbarCustomEnum) {
       switch (snackbarCustomEnum) {
         case SnackbarCustomEnum.DONE:
@@ -41,7 +41,7 @@ class SnackbarCustom {
         case SnackbarCustomEnum.ERROR:
           return {
             "icon": Icons.error_outline,
-            "color": MyColors.errorColor,
+            "color": MyColorsConst.errorColor,
           };
       }
     }
@@ -54,7 +54,7 @@ class SnackbarCustom {
       elevation: 1,
       content: Container(
         decoration: BoxDecoration(
-          color: MyColors.darkColor,
+          color: MyColorsConst.darkColor,
           borderRadius: BorderRadius.circular(5),
           gradient: new LinearGradient(
             stops: [0.02, 0.02],

@@ -56,7 +56,7 @@ class _SignInOrSignUpLayoutState extends State<SignInOrSignUpLayout> {
               'assets/images/logo.svg',
               alignment: Alignment.center,
               width: size.width,
-              color: MyColors.semiDarkColor,
+              color: MyColorsConst.semiDarkColor,
             ),
           ),
         ),
@@ -83,7 +83,7 @@ class _SignInOrSignUpLayoutState extends State<SignInOrSignUpLayout> {
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
                   color: _isKeyboardOpen
-                      ? MyColors.primaryLightColor
+                      ? MyColorsConst.primaryLightColor
                       : Color.fromARGB(100, 255, 255, 255),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [

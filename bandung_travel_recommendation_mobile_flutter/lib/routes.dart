@@ -1,3 +1,4 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/loading_cutom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_or_signup_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
@@ -17,22 +18,27 @@ class RouteGenerator {
       //   });
       case SignInOrSignUpScreen.routeName:
         return MaterialPageRoute(builder: (context) {
+          LoadingCustom.setContext = context;
           return SignInOrSignUpScreen();
         });
       case SignInScreen.routeName:
         return MaterialPageRoute(builder: (context) {
+          LoadingCustom.setContext = context;
           return SignInScreen();
         });
       case SignUpScreen.routeName:
         return MaterialPageRoute(builder: (context) {
+          LoadingCustom.setContext = context;
           return SignUpScreen();
         });
       case SidebarLayout.routeName:
         return MaterialPageRoute(builder: (context) {
+          LoadingCustom.setContext = context;
           return SidebarLayout();
         });
       case AddScheduleScreen.routeName:
         return MaterialPageRoute(builder: (context) {
+          LoadingCustom.setContext = context;
           return AddScheduleScreen();
         });
       default:

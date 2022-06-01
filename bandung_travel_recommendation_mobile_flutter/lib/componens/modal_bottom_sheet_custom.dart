@@ -9,12 +9,12 @@ class MyModalBottomSheetCustom {
   MyModalBottomSheetCustom(String imageName);
 
   static showScheduleDetail(BuildContext context,
-      {required List<Place> place}) {
+      {required List<PlaceModel> place}) {
     var size = MediaQuery.of(context).size;
     var textStyle = TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.bold,
-      color: MyColors.semiDarkColor,
+      color: MyColorsConst.semiDarkColor,
     );
 
     return _buildMainModalBottomSheetCustom(
@@ -33,12 +33,12 @@ class MyModalBottomSheetCustom {
     );
   }
 
-  static showPlaceDetail(BuildContext context, {required Place place}) {
+  static showPlaceDetail(BuildContext context, {required PlaceModel place}) {
     var size = MediaQuery.of(context).size;
     var textStyle = TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.bold,
-      color: MyColors.semiDarkColor,
+      color: MyColorsConst.semiDarkColor,
     );
     return _buildMainModalBottomSheetCustom(
       context,
@@ -78,7 +78,7 @@ class MyModalBottomSheetCustom {
                 children: <Widget>[
                   Icon(
                     Icons.visibility,
-                    color: MyColors.semiDarkColor,
+                    color: MyColorsConst.semiDarkColor,
                     size: 16,
                   ),
                   SizedBox(width: 6),
@@ -87,7 +87,7 @@ class MyModalBottomSheetCustom {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: MyColors.semiDarkColor,
+                      color: MyColorsConst.semiDarkColor,
                       fontSize: 14,
                     ),
                   ),
@@ -129,7 +129,7 @@ class MyModalBottomSheetCustom {
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
               decoration: BoxDecoration(
-                color: MyColors.whiteColor,
+                color: MyColorsConst.whiteColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
@@ -156,7 +156,7 @@ class MyModalBottomSheetCustom {
                               title,
                               maxLines: 1,
                               style: TextStyle(
-                                color: MyColors.semiDarkColor,
+                                color: MyColorsConst.semiDarkColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 22,
                               ),
@@ -167,7 +167,7 @@ class MyModalBottomSheetCustom {
                               constraints: BoxConstraints(),
                               icon: Icon(
                                 Icons.close_sharp,
-                                color: MyColors.semiDarkColor,
+                                color: MyColorsConst.semiDarkColor,
                                 size: 32,
                               ),
                             ),
