@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bandung_travel_recommendation_mobile_flutter",
+            "cwd": "bandung_travel_recommendation_mobile_flutter",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "bandung_travel_recommendation_mobile_flutter (profile mode)",
+            "cwd": "bandung_travel_recommendation_mobile_flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "bandung_travel_recommendation_mobile_flutter (release mode)",
+            "cwd": "bandung_travel_recommendation_mobile_flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
