@@ -1,7 +1,7 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
 
-enum SnackbarCustomEnum { INFO, DONE, ERROR }
+enum SnackbarCustomEnum { INFO, SUCCESS, ERROR }
 
 class SnackbarCustomModel {
   String title;
@@ -18,17 +18,17 @@ class SnackbarCustom {
   static void show(BuildContext context,
       {required SnackbarCustomModel snackbarCustomModel}) {
     ScaffoldMessenger.of(context).showSnackBar(
-      _flushbarCustomLayout(context, snackbarCustomModel: snackbarCustomModel),
+      _snackbarCustomLayout(context, snackbarCustomModel: snackbarCustomModel),
     );
   }
 
-  static SnackBar _flushbarCustomLayout(BuildContext context,
+  static SnackBar _snackbarCustomLayout(BuildContext context,
       {required SnackbarCustomModel snackbarCustomModel}) {
-    var size = MediaQuery.of(context).size;
+    var mediaQuery = MediaQuery.of(context);
     var textStyle = TextStyle(color: MyColorsConst.semiDarkColor);
     styleStatus(SnackbarCustomEnum snackbarCustomEnum) {
       switch (snackbarCustomEnum) {
-        case SnackbarCustomEnum.DONE:
+        case SnackbarCustomEnum.SUCCESS:
           return {
             "icon": Icons.check,
             "color": Colors.green,
@@ -91,7 +91,6 @@ class SnackbarCustom {
                       Text(
                         snackbarCustomModel.message,
                         textAlign: TextAlign.justify,
-                        
                         softWrap: true,
                         style: textStyle.copyWith(
                           fontSize: 12,

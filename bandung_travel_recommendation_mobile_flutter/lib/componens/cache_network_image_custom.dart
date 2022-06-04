@@ -8,9 +8,11 @@ class CacheNetworkImageCustom extends StatelessWidget {
     Key? key,
     required this.width,
     required this.height,
+    this.borderRadius,
   }) : super(key: key);
   final String imageUrl;
   final double width, height;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class CacheNetworkImageCustom extends StatelessWidget {
       width: this.width,
       height: this.height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: this.borderRadius ?? BorderRadius.circular(16),
         color: Colors.black38,
         image: image == null
             ? null

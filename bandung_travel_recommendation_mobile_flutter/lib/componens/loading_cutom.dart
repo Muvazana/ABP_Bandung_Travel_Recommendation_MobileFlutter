@@ -14,7 +14,7 @@ class LoadingCustom {
       ),
     );
     showDialog(
-      barrierDismissible: true,
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return alert;

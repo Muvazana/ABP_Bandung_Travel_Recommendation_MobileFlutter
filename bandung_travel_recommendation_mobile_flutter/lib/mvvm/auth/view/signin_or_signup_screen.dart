@@ -1,13 +1,28 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signin_screen.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view_model/auth_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignInOrSignUpScreen extends StatelessWidget {
+class SignInOrSignUpScreen extends StatefulWidget {
   static const routeName = '/Auth';
   const SignInOrSignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignInOrSignUpScreen> createState() => _SignInOrSignUpScreenState();
+}
+
+class _SignInOrSignUpScreenState extends State<SignInOrSignUpScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      context.read<AuthViewModel>().checkUserTokenExist(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

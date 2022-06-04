@@ -5,6 +5,12 @@ class MyGeneralConst {
   static const API_URL = "${_BASE_URL}/api";
   static const API_IMAGE_URL = "${_BASE_URL}/img/destination";
   static const PREF_USER_KEY = "PREF_USER_KEY";
+
+  static const CODE_PROCESS_SUCCESS = 200;
+  static const CODE_NULL_RESPONSE = 400;
+  static const CODE_NO_INTERNET_CONECCTION = 401;
+  static const CODE_INVALID_FORMAT = 402;
+  static const CODE_UNKWON_ERROR = 403;
 }
 
 class MyColorsConst {

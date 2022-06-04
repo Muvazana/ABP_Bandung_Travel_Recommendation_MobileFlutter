@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:http/http.dart' as http;
 
-class ServicesResponseSuccess {
+class ServicesSuccess {
   int code;
-  Object response;
-  ServicesResponseSuccess({
+  dynamic response;
+  ServicesSuccess({
     required this.code,
     required this.response,
   });
@@ -14,7 +15,7 @@ class ServicesResponseSuccess {
 
 class ServicesFailure {
   int code;
-  Object errorResponse;
+  dynamic errorResponse;
   ServicesFailure({
     required this.code,
     required this.errorResponse,
@@ -29,8 +30,8 @@ class GeneralServices {
     'Accept': 'application/json',
   };
   static Map<String, String> addToken2Headers(String token) {
-    Map<String, String> headers = _headers;
-    headers['Authorization'] = 'Bearer ${token}';
+    Map<String, String> headers = new Map<String, String>.from(_headers)
+      ..addAll({'Authorization': "Bearer ${token}"});
 
     return headers;
   }
@@ -61,22 +62,27 @@ class GeneralServices {
         );
       }
       if (response.statusCode == 200) {
-        return ServicesResponseSuccess(
-          code: 200,
+        return ServicesSuccess(
+          code: response.statusCode,
           response: json.decode(response.body)['data'],
         );
       }
       return ServicesFailure(
         code: response.statusCode,
-        errorResponse: json.decode(response.body)['errormsg'],
+        errorResponse: json.decode(response.body)['errormsg'].toString(),
       );
     } on HttpException {
       return ServicesFailure(
-          code: 101, errorResponse: "No Internet Connection");
+          code: MyGeneralConst.CODE_NO_INTERNET_CONECCTION,
+          errorResponse: "No Internet Connection");
     } on FormatException {
-      return ServicesFailure(code: 102, errorResponse: "Invalid Format");
+      return ServicesFailure(
+          code: MyGeneralConst.CODE_INVALID_FORMAT,
+          errorResponse: "Invalid Format");
     } catch (e) {
-      return ServicesFailure(code: 103, errorResponse: "Unknwon Error");
+      return ServicesFailure(
+          code: MyGeneralConst.CODE_UNKWON_ERROR,
+          errorResponse: "Unknwon Error");
     }
   }
 }

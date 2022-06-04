@@ -1,7 +1,10 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/modal_bottom_sheet_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/timeline_tile_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/favorite_place_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view/favorite_screen/add_schedule_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/menu_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -9,16 +12,28 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = context.watch<MenuViewModel>();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: ListView.builder(
-          itemBuilder: (context, index) => card_expansion_custom_v1(
-            favoritePlace:
-                FavoritePlaceModel.dataDummyList(count: 6).elementAt(index),
-          ),
-          itemCount: FavoritePlaceModel.dataDummyList(count: 6).length,
-        ),
+        child: provider.getFavoritesDest != null &&
+                provider.getFavoritesDest!.length > 0
+            ? ListView.builder(
+                itemBuilder: (context, index) => card_expansion_custom_v1(
+                  favoritePlace: provider.getFavoritesDest!.elementAt(index),
+                ),
+                itemCount: provider.getFavoritesDest!.length,
+              )
+            : Center(
+                child: Text(
+                  "Not Create Favorite Destination yet!",
+                  style: TextStyle(
+                    color: MyColorsConst.semiDarkColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: MyColorsConst.primaryColor,
@@ -27,9 +42,10 @@ class FavoriteScreen extends StatelessWidget {
           color: MyColorsConst.whiteColor,
           size: 32,
         ),
-        onPressed: () {
-          // TODO event when floating button pressed
-        },
+        onPressed: () => Navigator.pushNamed(
+          context,
+          AddScheduleScreen.routeName,
+        ),
       ),
     );
   }
@@ -54,15 +70,17 @@ class _card_expansion_custom_v1State extends State<card_expansion_custom_v1> {
   Widget build(BuildContext context) {
     return InkWell(
       onLongPress: () {
-        // TODO event when long pressed
-        debugPrint("Long Pressed ID: ${this.widget.favoritePlace.id}");
+        context.read<MenuViewModel>().deleteFavoritePlaces(context,
+            favoritePlace: this.widget.favoritePlace);
       },
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: _isExpanded ? MyColorsConst.primaryColor : MyColorsConst.whiteColor,
+          color: _isExpanded
+              ? MyColorsConst.primaryColor
+              : MyColorsConst.whiteColor,
           semanticContainer: true,
           elevation: 3,
           child: ClipRRect(
@@ -119,7 +137,7 @@ class _card_expansion_custom_v1State extends State<card_expansion_custom_v1> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemBuilder: (context, index) => TimeLineTileCustom(
-                      widget.favoritePlace.places.elementAt(index).name,
+                      widget.favoritePlace.places.elementAt(index).name!,
                       isFirst: index == 0,
                       isLast: index == widget.favoritePlace.places.length - 1,
                       onTap: () => MyModalBottomSheetCustom.showPlaceDetail(

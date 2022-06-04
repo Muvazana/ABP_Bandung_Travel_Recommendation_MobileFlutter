@@ -4,42 +4,36 @@
 
 import 'dart:convert';
 
-List<PlaceModel> placesFromMap(String str) =>
-    List<PlaceModel>.from(json.decode(str).map((x) => PlaceModel.fromMap(x)));
-
-String placesToMap(List<PlaceModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
-
 class PlaceModel {
   PlaceModel({
-    required this.id,
-    required this.name,
-    required this.typePlaceId,
-    required this.rate,
-    required this.description,
-    required this.imageName,
-    required this.alamat,
-    required this.latitude,
-    required this.longitude,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.view,
-    required this.placeType,
+    this.id,
+    this.name,
+    this.typePlaceId,
+    this.rate,
+    this.description,
+    this.imageName,
+    this.alamat,
+    this.latitude,
+    this.longitude,
+    this.createdAt,
+    this.updatedAt,
+    this.view,
+    this.placeType,
   });
 
-  int id;
-  String name;
-  int typePlaceId;
-  double rate;
-  String description;
-  String imageName;
-  String alamat;
-  String latitude;
-  String longitude;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int view;
-  PlaceTypeModel placeType;
+  int? id;
+  String? name;
+  int? typePlaceId;
+  double? rate;
+  String? description;
+  String? imageName;
+  String? alamat;
+  String? latitude;
+  String? longitude;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? view;
+  PlaceTypeModel? placeType;
 
   factory PlaceModel.fromMap(Map<String, dynamic> json) => PlaceModel(
         id: json["id"],
@@ -51,27 +45,35 @@ class PlaceModel {
         alamat: json["alamat"],
         latitude: json["latitude"],
         longitude: json["longitude"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null ? DateTime.parse(json["created_at"]).toLocal() : null,
+        updatedAt: json["updated_at"] != null ? DateTime.parse(json["updated_at"]).toLocal() : null,
         view: json["view"],
-        placeType: PlaceTypeModel.fromMap(json["place_type"]),
+        placeType: json["place_types"] != null
+            ? PlaceTypeModel.fromMap(json["place_types"])
+            : null,
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "type_place_id": typePlaceId,
-        "rate": rate,
-        "description": description,
-        "image_name": imageName,
-        "alamat": alamat,
-        "latitude": latitude,
-        "longitude": longitude,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "view": view,
-        "place_type": placeType.toMap(),
+        "id": this.id,
+        "name": this.name,
+        "type_place_id": this.typePlaceId,
+        "rate": this.rate,
+        "description": this.description,
+        "image_name": this.imageName,
+        "alamat": this.alamat,
+        "latitude": this.latitude,
+        "longitude": this.longitude,
+        "created_at": this.createdAt?.toIso8601String() ?? '',
+        "updated_at": this.updatedAt?.toIso8601String() ?? '',
+        "view": this.view,
+        "place_types": this.placeType?.toMap() ?? '',
       };
+
+  static List<PlaceModel> placesFromMap(List<dynamic> str) =>
+      List<PlaceModel>.from(str.map((x) => PlaceModel.fromMap(x)));
+
+  static String placesToMap(List<PlaceModel> data) =>
+      json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
   static List<PlaceModel> dataDummyList({int count = 20}) => List.generate(
         count,
@@ -115,29 +117,29 @@ class PlaceModel {
 
 class PlaceTypeModel {
   PlaceTypeModel({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  int id;
-  String name;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int? id;
+  String? name;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory PlaceTypeModel.fromMap(Map<String, dynamic> json) => PlaceTypeModel(
         id: json["id"],
         name: json["name"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null ? DateTime.parse(json["created_at"]).toLocal() : null,
+        updatedAt: json["updated_at"] != null ? DateTime.parse(json["updated_at"]).toLocal() : null,
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String() ?? '',
+        "updated_at": updatedAt?.toIso8601String() ?? '',
       };
 
   factory PlaceTypeModel.dataDummy() => PlaceTypeModel(

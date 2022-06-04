@@ -2,29 +2,45 @@ import 'package:bandung_travel_recommendation_mobile_flutter/componens/card/sche
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/modal_bottom_sheet_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/timeline_tile_custom.dart';
-import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/add_schedule_viewmodel.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/menu_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class AddScheduleScreen extends StatelessWidget {
+class AddScheduleScreen extends StatefulWidget {
   static const routeName = '/Menu/AddScheduleScreen';
   const AddScheduleScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AddScheduleScreen> createState() => _AddScheduleScreenState();
+}
+
+class _AddScheduleScreenState extends State<AddScheduleScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      context.read<AddScheduleViewModel>().setUpAddSchedule();
+    });
+  }
+
   final TextStyle textStyle = const TextStyle(
     color: MyColorsConst.semiDarkColor,
     fontSize: 14,
   );
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var watchScheduleProvider = context.watch<AddScheduleViewModel>();
-    var readScheduleProvider = context.read<AddScheduleViewModel>();
-    var places = PlaceModel.dataDummyList(count: 25);
+    var addScheduleViewModelProvider = context.watch<AddScheduleViewModel>();
+    var menuViewModelProvider = context.watch<MenuViewModel>();
+    var placesDest = menuViewModelProvider.getPlacesDest;
+    var placesHotel = menuViewModelProvider.getPlacesHotel;
     List<Step> getSteps = [
       Step(
-        state: readScheduleProvider.getStepState(0),
-        isActive: watchScheduleProvider.currentStepperIndex >= 0,
+        state: addScheduleViewModelProvider.getStepState(0),
+        isActive: addScheduleViewModelProvider.currentStepperIndex >= 0,
         title: Text(
           'Hotel',
           style: textStyle,
@@ -40,27 +56,29 @@ class AddScheduleScreen extends StatelessWidget {
             ListView.builder(
               physics: ClampingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: places.length,
+              itemCount: placesDest!.length,
               itemBuilder: (context, index) {
                 return SchedulePlaceCard(
-                  imageUrl: places.elementAt(index).imageName,
-                  title: places.elementAt(index).name,
-                  description: places.elementAt(index).description,
-                  view: places.elementAt(index).view.toString(),
+                  imageUrl: placesDest.elementAt(index).imageName != null
+                      ? "${MyGeneralConst.API_IMAGE_URL}/${placesDest.elementAt(index).imageName}"
+                      : "dummy",
+                  title: placesDest.elementAt(index).name!,
+                  description: placesDest.elementAt(index).description!,
+                  view: placesDest.elementAt(index).view.toString(),
                   onLongPress: () {
                     MyModalBottomSheetCustom.showPlaceDetail(
                       context,
-                      place: places.elementAt(index),
+                      place: placesDest.elementAt(index),
                     );
                   },
                   onTap: (isSelected) {
                     // TODO when Card Selected
                     if (isSelected)
-                      readScheduleProvider
-                          .addSelectedPlaces(places.elementAt(index));
+                      addScheduleViewModelProvider
+                          .addSelectedPlaces(placesDest.elementAt(index));
                     else
-                      readScheduleProvider
-                          .removeSelectedPlaces(places.elementAt(index));
+                      addScheduleViewModelProvider
+                          .removeSelectedPlaces(placesDest.elementAt(index));
                   },
                 );
               },
@@ -69,8 +87,8 @@ class AddScheduleScreen extends StatelessWidget {
         ),
       ),
       Step(
-        state: readScheduleProvider.getStepState(1),
-        isActive: watchScheduleProvider.currentStepperIndex >= 1,
+        state: addScheduleViewModelProvider.getStepState(1),
+        isActive: addScheduleViewModelProvider.currentStepperIndex >= 1,
         title: Text(
           'Place',
           style: textStyle,
@@ -86,27 +104,29 @@ class AddScheduleScreen extends StatelessWidget {
             ListView.builder(
               physics: ClampingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: places.length,
+              itemCount: placesHotel!.length,
               itemBuilder: (context, index) {
                 return SchedulePlaceCard(
-                  imageUrl: places.elementAt(index).imageName,
-                  title: places.elementAt(index).name,
-                  description: places.elementAt(index).description,
-                  view: places.elementAt(index).view.toString(),
+                  imageUrl: placesHotel.elementAt(index).imageName != null
+                      ? "${MyGeneralConst.API_IMAGE_URL}/${placesHotel.elementAt(index).imageName}"
+                      : "dummy",
+                  title: placesHotel.elementAt(index).name!,
+                  description: placesHotel.elementAt(index).description!,
+                  view: placesHotel.elementAt(index).view.toString(),
                   onLongPress: () {
                     MyModalBottomSheetCustom.showPlaceDetail(
                       context,
-                      place: places.elementAt(index),
+                      place: placesHotel.elementAt(index),
                     );
                   },
                   onTap: (isSelected) {
                     // TODO when Card Selected
                     if (isSelected)
-                      readScheduleProvider
-                          .addSelectedPlaces(places.elementAt(index));
+                      addScheduleViewModelProvider
+                          .addSelectedPlaces(placesHotel.elementAt(index));
                     else
-                      readScheduleProvider
-                          .removeSelectedPlaces(places.elementAt(index));
+                      addScheduleViewModelProvider
+                          .removeSelectedPlaces(placesHotel.elementAt(index));
                   },
                 );
               },
@@ -115,8 +135,8 @@ class AddScheduleScreen extends StatelessWidget {
         ),
       ),
       Step(
-        state: readScheduleProvider.getStepState(2),
-        isActive: watchScheduleProvider.currentStepperIndex >= 2,
+        state: addScheduleViewModelProvider.getStepState(2),
+        isActive: addScheduleViewModelProvider.currentStepperIndex >= 2,
         title: Text(
           'Finish',
           style: textStyle,
@@ -133,11 +153,14 @@ class AddScheduleScreen extends StatelessWidget {
               physics: ClampingScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) => TimeLineTileCustom(
-                watchScheduleProvider.getSelectedPlaces.elementAt(index).name,
+                addScheduleViewModelProvider.getSelectedPlaces
+                    .elementAt(index)
+                    .name!,
                 isFirst: index == 0,
-                isLast: index == watchScheduleProvider.getSelectedPlaces.length - 1,
+                isLast: index ==
+                    addScheduleViewModelProvider.getSelectedPlaces.length - 1,
               ),
-              itemCount: watchScheduleProvider.getSelectedPlaces.length,
+              itemCount: addScheduleViewModelProvider.getSelectedPlaces.length,
             )
           ],
         ),
@@ -154,22 +177,24 @@ class AddScheduleScreen extends StatelessWidget {
       ),
       body: Stepper(
         type: StepperType.horizontal,
-        currentStep: watchScheduleProvider.currentStepperIndex,
+        currentStep: addScheduleViewModelProvider.currentStepperIndex,
         steps: getSteps,
         controlsBuilder: (context, details) => Container(),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(
-          watchScheduleProvider, readScheduleProvider, getSteps),
-      floatingActionButton:
-          watchScheduleProvider.currentStepperIndex != (getSteps.length - 1)
-              ? _buildFloatingButton(context)
-              : null,
+          context, addScheduleViewModelProvider, getSteps),
+      floatingActionButton: addScheduleViewModelProvider.currentStepperIndex !=
+              (getSteps.length - 1)
+          ? _buildFloatingButton(context)
+          : null,
       // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
-  Widget _buildBottomNavigationBar(AddScheduleViewModel watchScheduleProvider,
-          AddScheduleViewModel readScheduleProvider, List<Step> getSteps) =>
+  Widget _buildBottomNavigationBar(
+          BuildContext context,
+          AddScheduleViewModel addScheduleViewModelProvider,
+          List<Step> getSteps) =>
       Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -184,7 +209,7 @@ class AddScheduleScreen extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            if (watchScheduleProvider.currentStepperIndex != 0)
+            if (addScheduleViewModelProvider.currentStepperIndex != 0)
               Expanded(
                 child: TextButtonCustomV1(
                   text: "Back",
@@ -192,18 +217,19 @@ class AddScheduleScreen extends StatelessWidget {
                   textColor: MyColorsConst.primaryColor,
                   borderColor: MyColorsConst.primaryColor,
                   backgroundColor: Colors.transparent,
-                  onPressed: readScheduleProvider.onStepCancel,
+                  onPressed: () =>
+                      addScheduleViewModelProvider.onStepCancel(context),
                 ),
               ),
             SizedBox(width: 16),
             Expanded(
               child: TextButtonCustomV1(
-                text: watchScheduleProvider.currentStepperIndex !=
+                text: addScheduleViewModelProvider.currentStepperIndex !=
                         (getSteps.length - 1)
                     ? "Next"
                     : "Save",
-                onPressed: () =>
-                    readScheduleProvider.onStepContinue(getSteps.length),
+                onPressed: () => addScheduleViewModelProvider.onStepContinue(
+                    context, getSteps.length),
               ),
             ),
           ],

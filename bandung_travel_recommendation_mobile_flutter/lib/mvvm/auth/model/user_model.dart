@@ -29,7 +29,7 @@ class UserModel {
   }
 
   factory UserModel.fromMapApi(Map<String, dynamic> dataJson) {
-    var user = json.decode(dataJson["user"]);
+    var user = dataJson["user"];
     return UserModel(
       email: user["email"],
       name: user["name"],
@@ -53,7 +53,7 @@ class UserModel {
   Map<String, dynamic> toMap4API() => {
         "inputEmail": this.email,
         "inputName": this.name,
-        "inputPassword": this.role,
+        "inputPassword": this.password,
       };
   // Map<String, dynamic> toMap4EditAPI() => {
   //       "inputName": this.name,

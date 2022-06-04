@@ -1,22 +1,20 @@
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/cache_network_image_custom.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/componens/modal_bottom_sheet_custom.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/place_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/model/team_profile_model.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_model/menu_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   String title;
 
   HomeScreen({Key? key, required this.title}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   bool _pinned = true;
   bool _snap = false;
   bool _floating = false;
@@ -63,8 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 centerTitle: true,
                 title: isSliverCollapse
                     ? Text(
-                        this.widget.title,
-                        style: TextStyle(fontWeight: FontWeight.bold, color: MyColorsConst.whiteColor),
+                        this.title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: MyColorsConst.whiteColor),
                       )
                     : null,
                 background: Stack(
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         SliverList(
           delegate: SliverChildListDelegate([
             _buildDiscoverPage(size),
-            _buildRecomPage(size),
+            _buildRecomPage(context, size),
             _buildTeamsPage(size),
           ]),
         ),
@@ -220,7 +220,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Recommended Places Page
-  Widget _buildRecomPage(Size size) {
+  Widget _buildRecomPage(BuildContext context, Size size) {
+    var watchProvider = context.watch<MenuViewModel>();
     var height = size.height * 5 / 6;
     return Container(
       height: height,
@@ -234,24 +235,37 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           _addTitleV1("Recommended for you", MyColorsConst.whiteColor),
           SizedBox(height: 24),
-          _buildRecomPageCarousel(PlaceModel.dataDummyList(), height, size),
+          _buildRecomPageCarousel(
+            context,
+            watchProvider.getPlacesDest ?? PlaceModel.dataDummyList(),
+            height,
+            size,
+          ),
           Spacer(),
-          _buildRecomPageCarousel(PlaceModel.dataDummyList(), height, size,
-              isPlace: false),
+          _buildRecomPageCarousel(
+            context,
+            watchProvider.getPlacesHotel ?? PlaceModel.dataDummyList(),
+            height,
+            size,
+            isPlace: false,
+          ),
           Spacer(),
           TextButtonCustomV1(
             text: "Schedule Now!",
             margin: const EdgeInsets.symmetric(horizontal: 32),
             backgroundColor: MyColorsConst.primaryColor,
             textColor: MyColorsConst.whiteColor,
-            onPressed: () {},
+            onPressed: () => context
+                .read<MenuViewModel>()
+                .setOnSidebarItemSelected(index: 2),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildRecomPageCarousel(List<PlaceModel> data, double height, Size size,
+  Widget _buildRecomPageCarousel(
+      BuildContext context, List<PlaceModel> data, double height, Size size,
       {bool isPlace = true}) {
     recomTitle(String title) => Expanded(
           flex: 1,
@@ -285,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   disableCenter: true,
                   padEnds: false,
                   reverse: !isPlace),
-              items: _carouselRecomCardItems(height, size, data),
+              items: _carouselRecomCardItems(context, height, size, data),
             ),
           ),
         ),
@@ -295,13 +309,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _carouselRecomCardItems(
-      double parentHeight, Size size, List<PlaceModel> data) {
+    BuildContext context,
+    double parentHeight,
+    Size size,
+    List<PlaceModel> data,
+  ) {
     return data
         .map(
           (e) => InkWell(
-            onTap: () {
-              debugPrint(e.name);
-            },
+            onTap: () => MyModalBottomSheetCustom.showPlaceDetail(
+              context,
+              place: e,
+            ),
             child: Container(
               height: parentHeight / 3,
               width: size.width * 1 / 3,
@@ -319,10 +338,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: <Widget>[
                   Expanded(
-                    child: Image(
-                      image:
-                          AssetImage("assets/images/menu/home/" + e.imageName),
-                      fit: BoxFit.fill,
+                    child: CacheNetworkImageCustom(
+                      e.imageName != null
+                          ? "${MyGeneralConst.API_IMAGE_URL}/${e.imageName}"
+                          : "dummy",
+                      width: double.maxFinite,
+                      height: double.maxFinite,
+                      borderRadius: BorderRadius.zero,
                     ),
                   ),
                   Expanded(
@@ -336,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                e.name,
+                                e.name ?? '',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.start,
@@ -348,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(height: 3),
                               Text(
-                                e.description,
+                                e.description ?? '',
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.start,
@@ -408,7 +430,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _teamsCardItem(Size size, TeamProfileModel profile, {bool isLeft = true}) {
+  Widget _teamsCardItem(Size size, TeamProfileModel profile,
+      {bool isLeft = true}) {
     var width = size.width / 2;
     var height = width - width / 4;
     var widthSide = width / 4;

@@ -1,8 +1,11 @@
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_button_custom_v1.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/componens/text_form_custom_v1.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/model/user_model.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/layout/signin_or_signup_layout.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view/signup_screen.dart';
+import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/auth/view_model/auth_viewmodel.dart';
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -10,6 +13,8 @@ class SignInScreen extends StatelessWidget {
   static const routeName = '/Auth/SignInScreen';
   SignInScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,7 @@ class SignInScreen extends StatelessWidget {
             size: 24,
           ),
           keyboardType: TextInputType.emailAddress,
+          controller: emailController,
           validator: MultiValidator([
             RequiredValidator(errorText: "* Required!"),
             EmailValidator(errorText: "Email not Valid!")
@@ -48,6 +54,7 @@ class SignInScreen extends StatelessWidget {
             size: 24,
           ),
           isPassword: true,
+          controller: passwordController,
           validator: RequiredValidator(errorText: "* Required!"),
         ),
         SizedBox(height: 8),
@@ -57,11 +64,15 @@ class SignInScreen extends StatelessWidget {
           textColor: MyColorsConst.whiteColor,
           elevation: 0,
           onPressed: () {
-            if (this._formKey.currentState!.validate()) {
-              debugPrint("Valid");
-            } else {
-              debugPrint("Not Valid");
-            }
+            var user = UserModel(
+              email: emailController.text,
+              password: passwordController.text,
+            );
+            context.read<AuthViewModel>().loginProcess(
+                  context,
+                  userModel: user,
+                  isFormValid: this._formKey.currentState!.validate(),
+                );
           },
         ),
         SizedBox(height: 6),
