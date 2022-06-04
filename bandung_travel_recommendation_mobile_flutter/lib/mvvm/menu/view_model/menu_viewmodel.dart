@@ -37,7 +37,11 @@ class MenuViewModel extends ChangeNotifier {
     _favoritesDest = favoritesDest;
     notifyListeners();
   }
-
+  void setUpMenu(){
+    _sidebarXController!.selectIndex(0);
+    setOnSidebarItemSelected();
+    notifyListeners();
+  }
   void deleteFavoritePlaces(
     BuildContext context, {
     required FavoritePlaceModel favoritePlace,
@@ -169,12 +173,9 @@ class MenuViewModel extends ChangeNotifier {
         title = null;
         break;
       case 1:
-        title = "Dashboard";
-        break;
-      case 2:
         title = "Favorite";
         break;
-      case 3:
+      case 2:
         title = "Profile";
         break;
       default:

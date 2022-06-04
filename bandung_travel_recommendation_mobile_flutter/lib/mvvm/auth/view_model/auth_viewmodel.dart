@@ -74,6 +74,7 @@ class AuthViewModel extends ChangeNotifier {
         res = await GeneralSharedPreferences.saveUserData(user);
         if (res is ServicesSuccess) {
           var provider = context.read<MenuViewModel>();
+          provider.setUpMenu();
           provider.setUserLogged = user;
           res = await provider.fetchPlacesFromServer(user.token!);
           LoadingCustom.dismiss(context);
@@ -145,6 +146,7 @@ class AuthViewModel extends ChangeNotifier {
       res = await UserServices.getInformation(user.token!);
       if (res is ServicesSuccess) {
         var provider = context.read<MenuViewModel>();
+        provider.setUpMenu();
         provider.setUserLogged = user;
         res = await provider.fetchPlacesFromServer(user.token!);
         LoadingCustom.dismiss(context);

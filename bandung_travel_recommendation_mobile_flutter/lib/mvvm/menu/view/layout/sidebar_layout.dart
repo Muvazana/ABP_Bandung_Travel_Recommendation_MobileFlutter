@@ -27,7 +27,7 @@ class SidebarLayout extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var providerWatch = context.watch<MenuViewModel>();
     return Scaffold(
-      appBar: context.watch<MenuViewModel>().getAppBarTitle,
+      appBar: providerWatch.getAppBarTitle,
       drawer: SidebarX(
         controller: providerWatch.getSidebarXController!,
         theme: SidebarXTheme(
@@ -133,19 +133,14 @@ class SidebarLayout extends StatelessWidget {
             onTap: () => providerWatch.setOnSidebarItemSelected(index: 0),
           ),
           SidebarXItem(
-            icon: Icons.dashboard_rounded,
-            label: 'Dashboard',
-            onTap: () => providerWatch.setOnSidebarItemSelected(index: 1),
-          ),
-          SidebarXItem(
             icon: Icons.favorite,
             label: 'Favorite',
-            onTap: () => providerWatch.setOnSidebarItemSelected(index: 2),
+            onTap: () => providerWatch.setOnSidebarItemSelected(index: 1),
           ),
           SidebarXItem(
             icon: Icons.person,
             label: 'Profile',
-            onTap: () => providerWatch.setOnSidebarItemSelected(index: 3),
+            onTap: () => providerWatch.setOnSidebarItemSelected(index: 2),
           ),
         ],
       ),
@@ -173,15 +168,8 @@ class _MenuScreenControll extends StatelessWidget {
           case 0:
             return HomeScreen(title: "Home");
           case 1:
-            return Center(
-              child: Text(
-                'Dashboard',
-                style: TextStyle(color: Colors.black),
-              ),
-            );
-          case 2:
             return FavoriteScreen();
-          case 3:
+          case 2:
             return ProfileScreen();
           default:
             return Center(

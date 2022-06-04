@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // final args = settings.arguments;
-    debugPrint(settings.name);
     switch (settings.name) {
       // case LoginScreen.routeName:
       //   return MaterialPageRoute(builder: (context) {

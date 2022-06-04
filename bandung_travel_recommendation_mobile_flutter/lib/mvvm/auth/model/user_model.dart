@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class UserModel {
   String? email;
@@ -53,7 +52,7 @@ class UserModel {
   Map<String, dynamic> toMap4API() => {
         "inputEmail": this.email,
         "inputName": this.name,
-        "inputPassword": this.password,
+        if(this.password!.isNotEmpty) "inputPassword": this.password,
       };
   // Map<String, dynamic> toMap4EditAPI() => {
   //       "inputName": this.name,
