@@ -25,7 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       var user = context.read<MenuViewModel>().getUserLogged!;
       _nameController.text = user.name!;
       _emailontroller.text = user.email!;

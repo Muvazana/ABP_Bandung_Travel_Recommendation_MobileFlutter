@@ -6,6 +6,7 @@ import 'package:bandung_travel_recommendation_mobile_flutter/mvvm/menu/view_mode
 import 'package:bandung_travel_recommendation_mobile_flutter/utils/const.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyModalBottomSheetCustom {
   MyModalBottomSheetCustom(String imageName);
@@ -111,7 +112,13 @@ class MyModalBottomSheetCustom {
             SizedBox(height: 16),
             TextButtonCustomV1(
               text: "Open in Google Map",
-              onPressed: () {
+              onPressed: () async {
+                String googleUrl = 'https://www.google.com/maps/search/?api=1&query=${_place.latitude},${_place.longitude}';
+                if (await canLaunchUrl(Uri.parse(googleUrl))) {
+                  await launchUrl(Uri.parse(googleUrl));
+                } else {
+                  throw 'Could not open the map.';
+                }
                 // TODO when Open in Google Map clicked
               },
             ),

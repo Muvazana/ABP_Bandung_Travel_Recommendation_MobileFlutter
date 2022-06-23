@@ -257,7 +257,7 @@ class HomeScreen extends StatelessWidget {
             textColor: MyColorsConst.whiteColor,
             onPressed: () => context
                 .read<MenuViewModel>()
-                .setOnSidebarItemSelected(index: 2),
+                .setOnSidebarItemSelected(index: 1),
           ),
         ],
       ),

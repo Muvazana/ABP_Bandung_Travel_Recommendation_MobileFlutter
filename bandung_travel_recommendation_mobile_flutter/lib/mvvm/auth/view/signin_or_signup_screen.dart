@@ -19,7 +19,7 @@ class _SignInOrSignUpScreenState extends State<SignInOrSignUpScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<AuthViewModel>().checkUserTokenExist(context);
     });
   }
